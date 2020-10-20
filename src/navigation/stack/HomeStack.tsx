@@ -9,7 +9,7 @@ export const HomeStack = () => (
     screenOptions={{
       headerTitleStyle: {fontSize: 23, color: 'white'},
       headerTitleAlign: 'center',
-      headerStyle: {backgroundColor: '#4d4c3f'},
+      headerStyle: {backgroundColor: '#807c74'},
     }}>
     <Stack.Screen name={RootSreens.Home} component={Home} />
   </Stack.Navigator>

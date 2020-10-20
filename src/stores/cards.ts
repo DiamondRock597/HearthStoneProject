@@ -20,7 +20,6 @@ export class CardStore {
 
       this.cards = cards;
     } catch (error) {
-      console.log(error);
     } finally {
       this.isLoading = false;
     }

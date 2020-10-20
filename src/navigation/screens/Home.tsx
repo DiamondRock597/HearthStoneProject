@@ -12,7 +12,7 @@ import {FlatGrid} from 'react-native-super-grid';
 export class Home extends React.Component {
   private get cardsHeaderComponent() {
     return (
-      <View>
+      <View style={styles.inputBlock}>
         <TextInput placeholder="Enter card name" style={styles.homeInput} />
       </View>
     );
@@ -26,17 +26,16 @@ export class Home extends React.Component {
 
   public render() {
     return (
-      <View>
-        <View>
-          <FlatGrid
-            ListEmptyComponent={this.cardsEmptyComponent}
-            ListHeaderComponent={this.cardsHeaderComponent}
-            data={this.props.cards.cardsList}
-            renderItem={({item}) => <AutoHeightImage width={200} source={{uri: item.image}} />}
-            itemDimension={150}
-            spacing={10}
-          />
-        </View>
+      <View style={styles.background}>
+        <FlatGrid
+          ListEmptyComponent={this.cardsEmptyComponent}
+          ListHeaderComponent={this.cardsHeaderComponent}
+          data={this.props.cards.cardsList}
+          renderItem={({item}) => <AutoHeightImage width={200} source={{uri: item.image}} />}
+          itemDimension={150}
+          keyExtractor={(item) => item.id.toString()}
+          spacing={10}
+        />
       </View>
     );
   }
