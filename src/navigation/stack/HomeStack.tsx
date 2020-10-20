@@ -5,7 +5,12 @@ import {Home} from '../screens/Home';
 const Stack = createStackNavigator();
 
 export const HomeStack = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerTitleStyle: {fontSize: 23, color: 'white'},
+      headerTitleAlign: 'center',
+      headerStyle: {backgroundColor: '#4d4c3f'},
+    }}>
     <Stack.Screen name={RootSreens.Home} component={Home} />
   </Stack.Navigator>
 );
