@@ -1,15 +1,30 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, TextInput, FlatList, Text} from 'react-native';
 import {observer, inject} from 'mobx-react';
-import {Stores} from '../../stores/stores';
-import {TextInput} from 'react-native-gesture-handler';
-import {styles} from '../../styles/styles';
-import AutoHeightImage from 'react-native-auto-height-image';
 import {FlatGrid} from 'react-native-super-grid';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
+
+import {styles} from '../styles/styles';
+import {Stores} from '../stores/stores';
+import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {CardStore} from '../stores/cards';
+import {CardModel} from '../models/Card';
+import {Card} from '../components/Card';
+
+interface Props {
+  navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
+  route: RouteProp<RootStackParamList, RootScreens.Home>;
+  cards: CardStore;
+}
+
+export interface Item {
+  item: CardModel;
+}
 
 @inject(Stores.Cards)
 @observer
-export class Home extends React.Component {
+export class Home extends React.Component<Props> {
   private get cardsHeaderComponent() {
     return (
       <View style={styles.inputBlock}>
@@ -31,9 +46,9 @@ export class Home extends React.Component {
           ListEmptyComponent={this.cardsEmptyComponent}
           ListHeaderComponent={this.cardsHeaderComponent}
           data={this.props.cards.cardsList}
-          renderItem={({item}) => <AutoHeightImage width={200} source={{uri: item.image}} />}
+          renderItem={({item}: Item) => <Card item={item} />}
           itemDimension={150}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={item => item.id.toString()}
           spacing={10}
         />
       </View>
