@@ -1,56 +1,23 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {RootScreens} from './screens';
-import {Addition} from '../screens/Addition';
-import {HomeStack} from './stack/HomeStack';
-import {Image} from 'react-native';
+import {TabNavigation} from './tab/TabNavigation';
+import {Discription} from '../screens/Discription';
 
-const Tab = createBottomTabNavigator();
-
-const tabIcon = (color: string) => ({tintColor: color, width: 40, height: 40});
+const Stack = createStackNavigator();
 
 export const MainNavigation = () => (
   <NavigationContainer>
-    <Tab.Navigator
-      tabBarOptions={{
-        labelPosition: 'beside-icon',
-        labelStyle: {fontSize: 15},
-        activeTintColor: '#ebcf96',
-        inactiveTintColor: 'white',
-        tabStyle: {backgroundColor: '#4d4c3f'},
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleStyle: {fontSize: 23, color: 'white'},
+        headerTitleAlign: 'center',
+        headerStyle: {backgroundColor: '#807c74'},
       }}>
-      <Tab.Screen
-        name={RootScreens.Home}
-        component={HomeStack}
-        options={{
-          tabBarIcon: (props) => (
-            <Image
-              style={tabIcon(props.color)}
-              source={{
-                uri:
-                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_HOF.png',
-              }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name={RootScreens.Addition}
-        component={Addition}
-        options={{
-          tabBarIcon: (props) => (
-            <Image
-              style={tabIcon(props.color)}
-              source={{
-                uri:
-                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png',
-              }}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+      <Stack.Screen name={RootScreens.Home} component={TabNavigation} />
+      <Stack.Screen name={RootScreens.Discription} component={Discription} />
+    </Stack.Navigator>
   </NavigationContainer>
 );

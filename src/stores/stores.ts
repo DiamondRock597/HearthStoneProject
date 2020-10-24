@@ -1,4 +1,3 @@
-import {RootScreens} from '../navigation/screens';
 import {CardStore} from './cards';
 
 export enum Stores {
