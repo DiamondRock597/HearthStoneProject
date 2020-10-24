@@ -26,7 +26,13 @@ export const MainNavigation = () => (
         component={HomeStack}
         options={{
           tabBarIcon: (props) => (
-            <Image style={tabIcon(props.color)} source={{uri: 'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_HOF.png'}} />
+            <Image
+              style={tabIcon(props.color)}
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_HOF.png',
+              }}
+            />
           ),
         }}
       />
@@ -37,7 +43,10 @@ export const MainNavigation = () => (
           tabBarIcon: (props) => (
             <Image
               style={tabIcon(props.color)}
-              source={{uri: 'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png'}}
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png',
+              }}
             />
           ),
         }}

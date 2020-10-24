@@ -5,6 +5,6 @@ import {Item} from '../screens/Home';
 
 export const Card: React.FC<Item> = ({item}: Item) => (
   <TouchableOpacity>
-    <AutoHeightImage width={200} source={{uri: item.image}} />
+    <AutoHeightImage width={200} source={{uri: item.img}} />
   </TouchableOpacity>
 );
