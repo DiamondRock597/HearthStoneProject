@@ -15,7 +15,9 @@ export const MainNavigation = () => (
         headerTitleStyle: {fontSize: 23, color: 'white'},
         headerTitleAlign: 'center',
         headerStyle: {backgroundColor: '#807c74'},
-      }}>
+        headerTintColor: 'white',
+      }}
+      initialRouteName={RootScreens.Home}>
       <Stack.Screen name={RootScreens.Home} component={TabNavigation} />
       <Stack.Screen name={RootScreens.Discription} component={Discription} />
     </Stack.Navigator>

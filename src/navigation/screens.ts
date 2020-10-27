@@ -1,3 +1,5 @@
+import {CardModel} from '../models/Card';
+
 export enum RootScreens {
   Home = 'Home',
   Addition = 'Adition',
@@ -6,5 +8,5 @@ export enum RootScreens {
 export type RootStackParamList = {
   [RootScreens.Home]: undefined;
   [RootScreens.Addition]: undefined;
-  [RootScreens.Discription]: undefined;
+  [RootScreens.Discription]: {card: CardModel};
 };

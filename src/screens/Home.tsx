@@ -65,28 +65,28 @@ export class Home extends React.Component<Props, State> {
   public render() {
     return (
       <View style={styles.background}>
-        {/* <FlatGrid
+        <FlatGrid
           ListEmptyComponent={this.cardsEmptyComponent}
           ListHeaderComponent={this.cardsHeaderComponent}
-          data={this.props.cards.cardsList}
-          renderItem={this.renderItemCard}
-          itemDimension={150}
+          data={this.props.cards.cards}
+          renderItem={({item}: ListRenderItemInfo<CardModel>) => (
+            <Card item={item} navigation={this.props.navigation} />
+          )}
+          itemDimension={192}
           keyExtractor={(item) => item.id.toString()}
-          spacing={10}
-        /> */}
+          spacing={8}
+        />
       </View>
     );
   }
 
   private handleChangeInput: (text: string) => void = (text) => {
-    this.setState({valueInput: text});
+    this.setState({valueInput: text}, () => {
+      this.props.cards.fetchCards(this.params);
+    });
   };
 
   private get params() {
     return {type: this.state.valueInput};
   }
-
-  private renderItemCard = ({item}: ListRenderItemInfo<CardModel>) => (
-    <Card item={item} />
-  );
 }

@@ -20,4 +20,5 @@ export interface CardDTO {
   cropImage: string;
   keywordIds: Array<number>;
   duels: Array<boolean>;
+  durability: number;
 }

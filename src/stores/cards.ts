@@ -1,4 +1,11 @@
-import {observable, action, computed, makeObservable, runInAction} from 'mobx';
+import {
+  observable,
+  action,
+  computed,
+  makeObservable,
+  runInAction,
+  toJS,
+} from 'mobx';
 
 import {CardsAPI, Params} from '../api/CardAPI';
 import {CardModel} from '../models/Card';
@@ -13,7 +20,7 @@ export class CardStore {
   }
 
   @computed public get cardsList() {
-    return [...this.cards];
+    return toJS(this.cards);
   }
 
   @action.bound public fetchCards: (params: Params) => void = async (
