@@ -39,4 +39,7 @@ export const styles = StyleSheet.create({
   block: {
     paddingBottom: 10,
   },
+  discription: {
+    alignItems: 'center',
+  },
 });

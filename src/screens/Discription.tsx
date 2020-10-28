@@ -6,9 +6,9 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {CardModel} from '../models/Card';
 
 import {styles} from '../styles/discription';
-import {CardModel} from '../models/Card';
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Discription>;
@@ -93,11 +93,12 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
                   <Text style={styles.answer}>{card.durability}</Text>
                 </View>
               </View>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </View>
         </View>
+      </View>
+      <View style={styles.discription}>
+        <Text>{card.text.replace('&nbsp;', '')}</Text>
       </View>
     </ScrollView>
   );

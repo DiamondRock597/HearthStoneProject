@@ -7,13 +7,16 @@ import {
   toJS,
 } from 'mobx';
 
-import {CardsAPI, Params} from '../api/CardAPI';
+import {CardsAPI} from '../api/CardAPI';
 import {CardModel} from '../models/Card';
+
+const pageNumber: number = 1;
 
 export class CardStore {
   @observable public cards: Array<CardModel> = [];
   @observable public error: boolean = false;
   @observable public isLoading: boolean = false;
+  private page: number = pageNumber;
 
   public constructor() {
     makeObservable(this);
@@ -23,18 +26,34 @@ export class CardStore {
     return toJS(this.cards);
   }
 
-  @action.bound public fetchCards: (params: Params) => void = async (
-    params = {type: 'minion'},
-  ) => {
+  @action.bound public cleanCards: () => void = () => {
+    runInAction(() => {
+      this.cards = [];
+      this.page = 1;
+    });
+  };
+
+  @action.bound public fetchCards: (
+    text?: string,
+    paramsAtribute?: string,
+  ) => void = async (text, paramsAtribute) => {
     try {
+      if (this.isLoading) {
+        return;
+      }
       runInAction(() => {
         this.isLoading = true;
       });
 
-      const cards = await CardsAPI.fetchCards(params);
+      const {cards, page} = await CardsAPI.fetchCards({
+        text,
+        paramsAtribute,
+        page: this.page,
+      });
 
       runInAction(() => {
-        this.cards = cards;
+        this.cards = [...this.cards, ...cards];
+        this.page = page + pageNumber;
       });
     } catch (error) {
       runInAction(() => {

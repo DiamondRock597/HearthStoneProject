@@ -8,6 +8,7 @@ export class CardModel {
   public attack: number;
   public manaCost: number;
   public durability: number;
+  public text: string;
   public constructor(
     id: number,
     image: string,
@@ -16,6 +17,7 @@ export class CardModel {
     attack: number,
     manaCost: number,
     durability: number,
+    text: string,
   ) {
     this.id = id;
     this.img = image;
@@ -24,6 +26,7 @@ export class CardModel {
     this.attack = attack;
     this.manaCost = manaCost;
     this.durability = durability;
+    this.text = text;
   }
   public static Parse: (item: CardDTO) => CardModel = (item) =>
     new CardModel(
@@ -34,5 +37,6 @@ export class CardModel {
       item.attack,
       item.manaCost,
       item.durability,
+      item.text,
     );
 }

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {RootScreens} from './screens';
-import {TabNavigation} from './tab/TabNavigation';
+import {DrawerNavigation} from './drawer/DrawerNavigation';
 import {Discription} from '../screens/Discription';
 
 const Stack = createStackNavigator();
@@ -18,7 +18,7 @@ export const MainNavigation = () => (
         headerTintColor: 'white',
       }}
       initialRouteName={RootScreens.Home}>
-      <Stack.Screen name={RootScreens.Home} component={TabNavigation} />
+      <Stack.Screen name={RootScreens.Home} component={DrawerNavigation} />
       <Stack.Screen name={RootScreens.Discription} component={Discription} />
     </Stack.Navigator>
   </NavigationContainer>

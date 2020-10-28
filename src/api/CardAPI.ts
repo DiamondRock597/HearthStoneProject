@@ -5,22 +5,34 @@ import {CardModel} from '../models/Card';
 //import MockedCard from './mocked_cards.json';
 
 export interface Params {
-  type: string;
+  text?: string;
+  page?: number;
+  paramsAtribute?: string;
 }
 
 export class CardsAPI {
-  public static async fetchCards({type}: Params = {type: 'minion'}) {
+  public static async fetchCards({
+    text = '',
+    page,
+    paramsAtribute = 'type',
+  }: Params) {
     try {
       const res = await axios.get(
         'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USf8pl23QZ7JNdtiqnPHgsfkajDoaCBNWC',
         {
           params: {
-            type,
+            [paramsAtribute]: text,
+            page,
           },
         },
       );
+      console.log({res});
+
       const cards = res.data.cards;
-      return cards.map((item: CardDTO) => CardModel.Parse(item));
+      return {
+        cards: cards.map((item: CardDTO) => CardModel.Parse(item)),
+        page: res.data.page,
+      };
     } catch (error) {
       console.log(error);
     }

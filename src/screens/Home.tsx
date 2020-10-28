@@ -27,6 +27,7 @@ interface Props {
 
 interface State {
   valueInput: string;
+  page: number;
 }
 
 @inject(Stores.Cards)
@@ -34,6 +35,7 @@ interface State {
 export class Home extends React.Component<Props, State> {
   public state: State = {
     valueInput: '',
+    page: 1,
   };
 
   private get cardsHeaderComponent() {
@@ -59,16 +61,18 @@ export class Home extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    this.props.cards.fetchCards(this.params);
+    this.props.cards.fetchCards();
   }
 
   public render() {
     return (
       <View style={styles.background}>
         <FlatGrid
+          onEndReached={this.fetchCards}
+          onEndReachedThreshold={0.5}
           ListEmptyComponent={this.cardsEmptyComponent}
           ListHeaderComponent={this.cardsHeaderComponent}
-          data={this.props.cards.cards}
+          data={this.props.cards.cardsList}
           renderItem={({item}: ListRenderItemInfo<CardModel>) => (
             <Card item={item} navigation={this.props.navigation} />
           )}
@@ -81,12 +85,19 @@ export class Home extends React.Component<Props, State> {
   }
 
   private handleChangeInput: (text: string) => void = (text) => {
-    this.setState({valueInput: text}, () => {
-      this.props.cards.fetchCards(this.params);
-    });
+    this.setState({valueInput: text});
+    this.props.cards.cleanCards();
+
+    this.props.cards.fetchCards(
+      text.toLowerCase(),
+      this.props.route.params.paramsAtribute,
+    );
   };
 
-  private get params() {
-    return {type: this.state.valueInput};
-  }
+  private fetchCards: () => void = () => {
+    this.props.cards.fetchCards(
+      this.state.valueInput,
+      this.props.route.params.paramsAtribute,
+    );
+  };
 }

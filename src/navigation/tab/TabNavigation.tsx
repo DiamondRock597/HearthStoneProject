@@ -2,15 +2,22 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image} from 'react-native';
 
-import {RootScreens} from '../screens';
+import {RootScreens, RootStackParamList} from '../screens';
 import {Home} from '../../screens/Home';
 import {Addition} from '../../screens/Addition';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
 const tabIcon = (color: string) => ({tintColor: color, width: 40, height: 40});
 
-export const TabNavigation = () => (
+interface Props {
+  navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
+  route: RouteProp<RootStackParamList, RootScreens.Home>;
+}
+
+export const TabNavigation: React.FC<Props> = ({route}: Props) => (
   <Tab.Navigator
     tabBarOptions={{
       labelPosition: 'beside-icon',
@@ -22,6 +29,7 @@ export const TabNavigation = () => (
     <Tab.Screen
       name={RootScreens.Home}
       component={Home}
+      initialParams={{paramsAtribute: route.params.paramsAtribute}}
       options={{
         tabBarIcon: (props) => (
           <Image
@@ -34,6 +42,7 @@ export const TabNavigation = () => (
         ),
       }}
     />
+
     <Tab.Screen
       name={RootScreens.Addition}
       component={Addition}
