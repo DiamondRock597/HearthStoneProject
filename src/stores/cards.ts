@@ -27,42 +27,29 @@ export class CardStore {
   }
 
   @action.bound public cleanCards: () => void = () => {
-    runInAction(() => {
-      this.cards = [];
-      this.page = 1;
-    });
+    this.cards = [];
+    this.page = 1;
   };
 
-  @action.bound public fetchCards: (
-    text?: string,
-    paramsAtribute?: string,
-  ) => void = async (text, paramsAtribute) => {
+  @action.bound public fetchCards: (text?: string) => void = async (text) => {
     try {
       if (this.isLoading) {
         return;
       }
-      runInAction(() => {
-        this.isLoading = true;
-      });
+
+      this.isLoading = true;
 
       const {cards, page} = await CardsAPI.fetchCards({
         text,
-        paramsAtribute,
         page: this.page,
       });
 
-      runInAction(() => {
-        this.cards = [...this.cards, ...cards];
-        this.page = page + pageNumber;
-      });
+      this.cards = [...this.cards, ...cards];
+      this.page = page + pageNumber;
     } catch (error) {
-      runInAction(() => {
-        this.error = true;
-      });
+      this.error = true;
     } finally {
-      runInAction(() => {
-        this.isLoading = false;
-      });
+      this.isLoading = false;
     }
   };
 }

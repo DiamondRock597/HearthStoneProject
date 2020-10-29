@@ -87,17 +87,10 @@ export class Home extends React.Component<Props, State> {
   private handleChangeInput: (text: string) => void = (text) => {
     this.setState({valueInput: text});
     this.props.cards.cleanCards();
-
-    this.props.cards.fetchCards(
-      text.toLowerCase(),
-      this.props.route.params.paramsAtribute,
-    );
+    this.props.cards.fetchCards(text.toLowerCase());
   };
 
   private fetchCards: () => void = () => {
-    this.props.cards.fetchCards(
-      this.state.valueInput,
-      this.props.route.params.paramsAtribute,
-    );
+    this.props.cards.fetchCards(this.state.valueInput);
   };
 }

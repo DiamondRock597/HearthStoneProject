@@ -2,33 +2,28 @@ import axios from 'axios';
 
 import {CardDTO} from '../dto/CardsDTO';
 import {CardModel} from '../models/Card';
-//import MockedCard from './mocked_cards.json';
 
 export interface Params {
   text?: string;
   page?: number;
-  paramsAtribute?: string;
 }
 
 export class CardsAPI {
-  public static async fetchCards({
-    text = '',
-    page,
-    paramsAtribute = 'type',
-  }: Params) {
+  public static async fetchCards({text = '', page}: Params) {
     try {
       const res = await axios.get(
-        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USf8pl23QZ7JNdtiqnPHgsfkajDoaCBNWC',
+        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=US1lPj1EYYGBo327CMS97q83JBBhq0WS6R',
         {
           params: {
-            [paramsAtribute]: text,
+            class: text.toLowerCase(),
+            //textFilter: text.toLowerCase(),
             page,
           },
         },
       );
-      console.log({res});
 
       const cards = res.data.cards;
+
       return {
         cards: cards.map((item: CardDTO) => CardModel.Parse(item)),
         page: res.data.page,

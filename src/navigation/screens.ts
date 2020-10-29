@@ -4,11 +4,9 @@ export enum RootScreens {
   Home = 'Home',
   Addition = 'Adition',
   Discription = 'Discription',
-  HomeClass = 'HomeClass',
 }
 export type RootStackParamList = {
-  [RootScreens.Home]: {paramsAtribute: string};
+  [RootScreens.Home]: undefined;
   [RootScreens.Addition]: undefined;
   [RootScreens.Discription]: {card: CardModel};
-  [RootScreens.HomeClass]: undefined;
 };

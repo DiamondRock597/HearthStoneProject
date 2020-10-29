@@ -29,7 +29,6 @@ export const TabNavigation: React.FC<Props> = ({route}: Props) => (
     <Tab.Screen
       name={RootScreens.Home}
       component={Home}
-      initialParams={{paramsAtribute: route.params.paramsAtribute}}
       options={{
         tabBarIcon: (props) => (
           <Image
