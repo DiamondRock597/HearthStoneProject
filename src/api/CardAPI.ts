@@ -2,21 +2,23 @@ import axios from 'axios';
 
 import {CardDTO} from '../dto/CardsDTO';
 import {CardModel} from '../models/Card';
+import {Params} from '../models/card_filters';
 
-export interface Params {
+export interface Argument {
   text?: string;
   page?: number;
+  params: Params;
 }
 
 export class CardsAPI {
-  public static async fetchCards({text = '', page}: Params) {
+  public static async fetchCards({text = '', page, params}: Argument) {
     try {
       const res = await axios.get(
-        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=US1lPj1EYYGBo327CMS97q83JBBhq0WS6R',
+        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USCQakAPCVydck4gEXjZhuMT9VgQhhgpU8',
         {
           params: {
-            class: text.toLowerCase(),
-            //textFilter: text.toLowerCase(),
+            ...params,
+            textFilter: text.toLowerCase(),
             page,
           },
         },

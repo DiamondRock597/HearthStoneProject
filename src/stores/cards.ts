@@ -1,21 +1,30 @@
-import {
-  observable,
-  action,
-  computed,
-  makeObservable,
-  runInAction,
-  toJS,
-} from 'mobx';
+import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
 import {CardsAPI} from '../api/CardAPI';
 import {CardModel} from '../models/Card';
+import {
+  Params,
+  Classes,
+  Types,
+  Rarity,
+  MinionType,
+} from '../models/card_filters';
 
 const pageNumber: number = 1;
+
+export const defaultParams: Params = {
+  class: Classes.default,
+  type: Types.default,
+  rarity: Rarity.default,
+  minionType: MinionType.default,
+};
 
 export class CardStore {
   @observable public cards: Array<CardModel> = [];
   @observable public error: boolean = false;
   @observable public isLoading: boolean = false;
+  @observable public params: Params = defaultParams;
+
   private page: number = pageNumber;
 
   public constructor() {
@@ -31,6 +40,10 @@ export class CardStore {
     this.page = 1;
   };
 
+  @action.bound public setParams: (params: Params) => void = (params) => {
+    this.params = {...this.params, ...params};
+  };
+
   @action.bound public fetchCards: (text?: string) => void = async (text) => {
     try {
       if (this.isLoading) {
@@ -42,6 +55,7 @@ export class CardStore {
       const {cards, page} = await CardsAPI.fetchCards({
         text,
         page: this.page,
+        params: this.params,
       });
 
       this.cards = [...this.cards, ...cards];
