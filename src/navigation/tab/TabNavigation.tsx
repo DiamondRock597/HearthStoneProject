@@ -17,7 +17,7 @@ interface Props {
   route: RouteProp<RootStackParamList, RootScreens.Home>;
 }
 
-export const TabNavigation: React.FC<Props> = ({route}: Props) => (
+export const TabNavigation: React.FC<Props> = () => (
   <Tab.Navigator
     tabBarOptions={{
       labelPosition: 'beside-icon',

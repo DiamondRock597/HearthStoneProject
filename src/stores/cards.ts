@@ -24,6 +24,7 @@ export class CardStore {
   @observable public error: boolean = false;
   @observable public isLoading: boolean = false;
   @observable public params: Params = defaultParams;
+  @observable public valueInput: string = '';
 
   private page: number = pageNumber;
 
@@ -40,11 +41,15 @@ export class CardStore {
     this.page = 1;
   };
 
+  @action.bound public setValue: (text: string) => void = (text) => {
+    this.valueInput = text;
+  };
+
   @action.bound public setParams: (params: Params) => void = (params) => {
     this.params = {...this.params, ...params};
   };
 
-  @action.bound public fetchCards: (text?: string) => void = async (text) => {
+  @action.bound public fetchCards: () => void = async () => {
     try {
       if (this.isLoading) {
         return;
@@ -53,7 +58,7 @@ export class CardStore {
       this.isLoading = true;
 
       const {cards, page} = await CardsAPI.fetchCards({
-        text,
+        text: this.valueInput,
         page: this.page,
         params: this.params,
       });

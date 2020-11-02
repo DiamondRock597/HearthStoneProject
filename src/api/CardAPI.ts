@@ -14,7 +14,7 @@ export class CardsAPI {
   public static async fetchCards({text = '', page, params}: Argument) {
     try {
       const res = await axios.get(
-        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USCQakAPCVydck4gEXjZhuMT9VgQhhgpU8',
+        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USVLLTsXNnj2RZEIEGgGrtzxpl6JEWAIbY',
         {
           params: {
             ...params,

@@ -20,9 +20,6 @@ export const MainNavigation = () => (
         headerTitleAlign: 'center',
         headerStyle: {backgroundColor: '#807c74'},
         headerTintColor: 'white',
-        // headerLeft: (props) => (
-        //   <Button title="123" onPress={() => console.log({props})} />
-        // ),
       }}
       initialRouteName={RootScreens.Home}>
       <Stack.Screen

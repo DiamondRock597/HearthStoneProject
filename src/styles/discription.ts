@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
   container: {},
   imageBlock: {
-    borderWidth: 1,
+    borderBottomWidth: 0.6,
     borderColor: 'black',
     paddingBottom: 15,
     flexDirection: 'row',

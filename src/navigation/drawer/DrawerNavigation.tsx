@@ -1,16 +1,22 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Dimensions, ScaledSize, Text} from 'react-native';
+import {Dimensions, ScaledSize} from 'react-native';
 import {TabNavigation} from '../tab/TabNavigation';
 import {inject, observer} from 'mobx-react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {TypeDrawer, itemPicker} from './Drawer';
+import {TypeDrawer} from './Drawer';
 import {RootScreens, RootStackParamList} from '../screens';
 import {Stores} from '../../stores/stores';
 import {CardStore} from '../../stores/cards';
-import {Params, Classes} from '../../models/card_filters';
+import {
+  Params,
+  Classes,
+  Types,
+  Rarity,
+  MinionType,
+} from '../../models/card_filters';
 
 const Drawer = createDrawerNavigator();
 const {height}: ScaledSize = Dimensions.get('window');
@@ -61,26 +67,30 @@ export class DrawerNavigation extends React.Component<Props, State> {
     );
   }
 
-  private handleSelectInputClass: (item: itemPicker) => void = (item) => {
-    this.props.cards.setParams({class: item.value});
+  private handleSelectInputClass: (classType: Classes) => void = (
+    classType,
+  ) => {
+    this.props.cards.setParams({class: classType});
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
-  private handleSelectInputType: (item: itemPicker) => void = (item) => {
-    this.props.cards.setParams({type: item.value});
+  private handleSelectInputType: (type: Types) => void = (type) => {
+    this.props.cards.setParams({type});
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
-  private handleSelectInputRarity: (item: itemPicker) => void = (item) => {
-    this.props.cards.setParams({rarity: item.value});
+  private handleSelectInputRarity: (rarity: Rarity) => void = (rarity) => {
+    this.props.cards.setParams({rarity});
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
-  private handleSelectInputMinionType: (item: itemPicker) => void = (item) => {
-    this.props.cards.setParams({minionType: item.value});
+  private handleSelectInputMinionType: (minionType: MinionType) => void = (
+    minionType,
+  ) => {
+    this.props.cards.setParams({minionType});
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };

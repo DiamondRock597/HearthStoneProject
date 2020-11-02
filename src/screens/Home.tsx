@@ -25,19 +25,9 @@ interface Props {
   cards: CardStore;
 }
 
-interface State {
-  valueInput: string;
-  page: number;
-}
-
 @inject(Stores.Cards)
 @observer
-export class Home extends React.Component<Props, State> {
-  public state: State = {
-    valueInput: '',
-    page: 1,
-  };
-
+export class Home extends React.Component<Props> {
   private get cardsHeaderComponent() {
     return (
       <View style={styles.inputBlock}>
@@ -45,6 +35,7 @@ export class Home extends React.Component<Props, State> {
           placeholder="Enter card name"
           style={styles.homeInput}
           onChangeText={this.handleChangeInput}
+          value={this.props.cards.valueInput}
         />
       </View>
     );
@@ -85,12 +76,12 @@ export class Home extends React.Component<Props, State> {
   }
 
   private handleChangeInput: (text: string) => void = (text) => {
-    this.setState({valueInput: text});
+    this.props.cards.setValue(text);
     this.props.cards.cleanCards();
-    this.props.cards.fetchCards(text.toLowerCase());
+    this.props.cards.fetchCards();
   };
 
   private fetchCards: () => void = () => {
-    this.props.cards.fetchCards(this.state.valueInput);
+    this.props.cards.fetchCards();
   };
 }

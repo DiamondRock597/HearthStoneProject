@@ -5,11 +5,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Classes, MinionType, Rarity, Types} from '../../models/card_filters';
 import {styles} from '../../styles/dropdown';
 
-export interface itemPicker {
-  label: string;
-  value: Classes | Types | Rarity | MinionType;
-}
-
 const classes = [
   {label: 'Warrior', value: Classes.Warrior},
   {label: 'Priest', value: Classes.Priest},
@@ -49,10 +44,10 @@ const minionType = [
 
 interface Props {
   height: number;
-  onSelectClass: (item: itemPicker) => void;
-  onSelectType: (item: itemPicker) => void;
-  onSelectRarity: (item: itemPicker) => void;
-  onSelectMinionType: (item: itemPicker) => void;
+  onSelectClass: (classType: Classes) => void;
+  onSelectType: (type: Types) => void;
+  onSelectRarity: (rarity: Rarity) => void;
+  onSelectMinionType: (minionType: MinionType) => void;
 }
 
 export const TypeDrawer: React.FC<Props> = ({
@@ -64,43 +59,43 @@ export const TypeDrawer: React.FC<Props> = ({
 }: Props) => (
   <View style={{height}}>
     <DropDownPicker
-      placeholder={'Select class'}
+      placeholder="Select class"
       dropDownMaxHeight={500}
       style={styles.block}
       items={classes}
       containerStyle={styles.containerStyle}
       dropDownStyle={styles.dropDownStyle}
-      onChangeItem={(item) => onSelectClass(item)}
+      onChangeItem={(item) => onSelectClass(item.value)}
     />
 
     <DropDownPicker
-      placeholder={'Select type'}
+      placeholder="Select type"
       dropDownMaxHeight={500}
       style={styles.block}
       items={types}
       containerStyle={styles.containerStyle}
       dropDownStyle={styles.dropDownStyle}
-      onChangeItem={(item) => onSelectType(item)}
+      onChangeItem={(item) => onSelectType(item.value)}
     />
 
     <DropDownPicker
-      placeholder={'Select rarity'}
+      placeholder="Select rarity"
       dropDownMaxHeight={500}
       style={styles.block}
       items={rarity}
       containerStyle={styles.containerStyle}
       dropDownStyle={styles.dropDownStyle}
-      onChangeItem={(item) => onSelectRarity(item)}
+      onChangeItem={(item) => onSelectRarity(item.value)}
     />
 
     <DropDownPicker
-      placeholder={'Select Minion Type'}
+      placeholder="Select Minion Type"
       dropDownMaxHeight={500}
       style={styles.block}
       items={minionType}
       containerStyle={styles.containerStyle}
       dropDownStyle={styles.dropDownStyle}
-      onChangeItem={(item) => onSelectMinionType(item)}
+      onChangeItem={(item) => onSelectMinionType(item.value)}
     />
   </View>
 );
