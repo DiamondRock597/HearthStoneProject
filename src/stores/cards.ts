@@ -1,22 +1,26 @@
 import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
-import {CardsAPI} from '../api/CardAPI';
+import {CardsAPI, Params} from '../api/CardAPI';
+import {HttpAPI} from '../api/http_api';
+
 import {CardModel} from '../models/Card';
-import {
-  Params,
-  Classes,
-  Types,
-  Rarity,
-  MinionType,
-} from '../models/card_filters';
+import {Classes, Types, Rarity, MinionType} from '../models/card_filters';
 
 const pageNumber: number = 1;
+
+interface SelectParam {
+  type?: Types;
+  class?: Classes;
+  rarity?: Rarity;
+  minionType?: MinionType;
+}
 
 export const defaultParams: Params = {
   class: Classes.default,
   type: Types.default,
   rarity: Rarity.default,
   minionType: MinionType.default,
+  page: pageNumber,
 };
 
 export class CardStore {
@@ -24,12 +28,14 @@ export class CardStore {
   @observable public error: boolean = false;
   @observable public isLoading: boolean = false;
   @observable public params: Params = defaultParams;
-  @observable public valueInput: string = '';
 
+  public valueInput: string = '';
   private page: number = pageNumber;
+  private HeartstoneAPI: CardsAPI;
 
-  public constructor() {
+  public constructor(http: HttpAPI, params: Params) {
     makeObservable(this);
+    this.HeartstoneAPI = new CardsAPI(http, params);
   }
 
   @computed public get cardsList() {
@@ -45,8 +51,11 @@ export class CardStore {
     this.valueInput = text;
   };
 
-  @action.bound public setParams: (params: Params) => void = (params) => {
-    this.params = {...this.params, ...params};
+  @action.bound public setParams: (param: SelectParam) => void = (params) => {
+    this.params = {
+      ...this.params,
+      ...params,
+    };
   };
 
   @action.bound public fetchCards: () => void = async () => {
@@ -56,15 +65,15 @@ export class CardStore {
       }
 
       this.isLoading = true;
-
-      const {cards, page} = await CardsAPI.fetchCards({
-        text: this.valueInput,
+      const {cards} = await this.HeartstoneAPI.getCards({
+        textFilter: this.valueInput,
+        ...this.params,
         page: this.page,
-        params: this.params,
       });
+      console.log({cards: this.cards});
 
       this.cards = [...this.cards, ...cards];
-      this.page = page + pageNumber;
+      this.page = this.page + pageNumber;
     } catch (error) {
       this.error = true;
     } finally {

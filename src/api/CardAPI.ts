@@ -1,37 +1,38 @@
-import axios from 'axios';
-
 import {CardDTO} from '../dto/CardsDTO';
 import {CardModel} from '../models/Card';
-import {Params} from '../models/card_filters';
+import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
+import {HttpAPI} from './http_api';
 
-export interface Argument {
-  text?: string;
-  page?: number;
-  params: Params;
+export interface Params {
+  class?: Classes;
+  type?: Types;
+  rarity?: Rarity;
+  minionType?: MinionType;
+  textFilter?: string;
+  page: number;
+  access_token?: string;
+  locale?: string;
 }
 
 export class CardsAPI {
-  public static async fetchCards({text = '', page, params}: Argument) {
-    try {
-      const res = await axios.get(
-        'https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=USVLLTsXNnj2RZEIEGgGrtzxpl6JEWAIbY',
-        {
-          params: {
-            ...params,
-            textFilter: text.toLowerCase(),
-            page,
-          },
-        },
-      );
+  private http: HttpAPI;
+  private params: Params;
 
-      const cards = res.data.cards;
+  public constructor(http: HttpAPI, params: Params) {
+    this.http = http;
+    this.params = params;
+  }
 
-      return {
-        cards: cards.map((item: CardDTO) => CardModel.Parse(item)),
-        page: res.data.page,
-      };
-    } catch (error) {
-      console.log(error);
-    }
+  public async getCards({textFilter, page, type, rarity, minionType}: Params) {
+    const res = await this.http.get<{cards: Array<CardDTO>; page: number}>(
+      'cards',
+      {
+        params: {textFilter, page, type, rarity, minionType},
+      },
+    );
+
+    const result = res.cards.map((item: CardDTO) => CardModel.Parse(item));
+
+    return result;
   }
 }

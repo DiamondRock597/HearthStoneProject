@@ -40,6 +40,14 @@ export const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   discription: {
+    paddingVertical: 20,
+    paddingHorizontal: 60,
+    textAlign: 'center',
     alignItems: 'center',
+  },
+  headerDiscr: {
+    marginTop: 10,
+    fontSize: 40,
+    textAlign: 'center',
   },
 });

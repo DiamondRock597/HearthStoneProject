@@ -8,15 +8,10 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import {TypeDrawer} from './Drawer';
 import {RootScreens, RootStackParamList} from '../screens';
+import {Params} from '../../api/CardAPI';
 import {Stores} from '../../stores/stores';
 import {CardStore} from '../../stores/cards';
-import {
-  Params,
-  Classes,
-  Types,
-  Rarity,
-  MinionType,
-} from '../../models/card_filters';
+import {Classes, Types, Rarity, MinionType} from '../../models/card_filters';
 
 const Drawer = createDrawerNavigator();
 const {height}: ScaledSize = Dimensions.get('window');

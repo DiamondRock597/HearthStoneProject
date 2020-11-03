@@ -1,9 +1,10 @@
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, StyleSheet} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import HTMLView from 'react-native-htmlview';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {CardModel} from '../models/Card';
@@ -17,6 +18,7 @@ interface Props {
 
 export const Discription: React.FC<Props> = ({route}: Props) => {
   const {card}: {card: CardModel} = route.params;
+  const discr: string = `<p> ${card.text}</p>`;
 
   return (
     <ScrollView style={styles.background}>
@@ -97,9 +99,21 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
           </View>
         </View>
       </View>
+      <Text style={styles.headerDiscr}>Discription</Text>
       <View style={styles.discription}>
-        <Text>{card.text.replace('&nbsp;', '')}</Text>
+        <HTMLView value={discr} stylesheet={stylesHTML} />
       </View>
     </ScrollView>
   );
 };
+
+const stylesHTML = StyleSheet.create({
+  b: {
+    fontSize: 30,
+    fontWeight: '700',
+  },
+  p: {
+    fontSize: 25,
+    textAlign: 'center',
+  },
+});

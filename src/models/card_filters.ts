@@ -38,10 +38,3 @@ export enum MinionType {
   Murloc = 'murloc',
   Demon = 'demon',
 }
-
-export interface Params {
-  class?: Classes;
-  type?: Types;
-  rarity?: Rarity;
-  minionType?: MinionType;
-}
