@@ -27,10 +27,6 @@ interface State {
   params: Params;
 }
 
-export const defaultParams: Params = {
-  class: Classes.DemonHunter,
-};
-
 @inject(Stores.Cards)
 @observer
 export class DrawerNavigation extends React.Component<Props, State> {
@@ -65,19 +61,19 @@ export class DrawerNavigation extends React.Component<Props, State> {
   private handleSelectInputClass: (classType: Classes) => void = (
     classType,
   ) => {
-    this.props.cards.setParams({class: classType});
+    this.props.cards.setClass(classType);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
   private handleSelectInputType: (type: Types) => void = (type) => {
-    this.props.cards.setParams({type});
+    this.props.cards.setType(type);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
   private handleSelectInputRarity: (rarity: Rarity) => void = (rarity) => {
-    this.props.cards.setParams({rarity});
+    this.props.cards.setRarity(rarity);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
@@ -85,7 +81,7 @@ export class DrawerNavigation extends React.Component<Props, State> {
   private handleSelectInputMinionType: (minionType: MinionType) => void = (
     minionType,
   ) => {
-    this.props.cards.setParams({minionType});
+    this.props.cards.setMinionType(minionType);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };

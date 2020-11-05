@@ -37,4 +37,9 @@ export enum MinionType {
   Dragon = 'dragon',
   Murloc = 'murloc',
   Demon = 'demon',
+  Beast = 'beast',
+  Mech = 'mech',
+  Totem = 'totem',
+  Elemental = 'elemental',
+  Pirate = 'pirate',
 }

@@ -64,9 +64,7 @@ export class Home extends React.Component<Props> {
           ListEmptyComponent={this.cardsEmptyComponent}
           ListHeaderComponent={this.cardsHeaderComponent}
           data={this.props.cards.cardsList}
-          renderItem={({item}: ListRenderItemInfo<CardModel>) => (
-            <Card item={item} navigation={this.props.navigation} />
-          )}
+          renderItem={this.renderItem}
           itemDimension={192}
           keyExtractor={(item) => item.id.toString()}
           spacing={8}
@@ -76,12 +74,22 @@ export class Home extends React.Component<Props> {
   }
 
   private handleChangeInput: (text: string) => void = (text) => {
-    this.props.cards.setValue(text);
+    this.props.cards.setSearchValue(text);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
   private fetchCards: () => void = () => {
+    console.log('ENd');
+
     this.props.cards.fetchCards();
   };
+
+  private handlePress: (card: CardModel) => void = (card) => {
+    this.props.navigation.navigate(RootScreens.Discription, {card});
+  };
+
+  private renderItem = ({item}: ListRenderItemInfo<CardModel>) => (
+    <Card item={item} onPress={this.handlePress} />
+  );
 }

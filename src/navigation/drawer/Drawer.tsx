@@ -39,6 +39,11 @@ const minionType = [
   {label: 'Demon', value: MinionType.Demon},
   {label: 'Dragon', value: MinionType.Dragon},
   {label: 'Murloc', value: MinionType.Murloc},
+  {label: 'Pirate', value: MinionType.Pirate},
+  {label: 'Totem', value: MinionType.Totem},
+  {label: 'Beast', value: MinionType.Beast},
+  {label: 'Elemental', value: MinionType.Elemental},
+  {label: 'Mech', value: MinionType.Mech},
   {label: 'All', value: MinionType.default},
 ];
 

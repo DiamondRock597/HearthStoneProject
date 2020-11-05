@@ -1,45 +1,48 @@
 import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
-import {CardsAPI, Params} from '../api/CardAPI';
-import {HttpAPI} from '../api/http_api';
+import {HeartStoneAPI} from '../api/CardAPI';
 
 import {CardModel} from '../models/Card';
 import {Classes, Types, Rarity, MinionType} from '../models/card_filters';
 
 const pageNumber: number = 1;
 
-interface SelectParam {
-  type?: Types;
-  class?: Classes;
-  rarity?: Rarity;
-  minionType?: MinionType;
+interface StoreOfCards {
+  cardsList: Array<CardModel>;
+
+  cleanCards: () => void;
+
+  setSearchValue: (text: string) => void;
+  setType: (type: Types) => void;
+  setClass: (classType: Classes) => void;
+  setMinionType: (minionType: MinionType) => void;
+  setRarity: (rarity: Rarity) => void;
+
+  fetchCards: () => void;
 }
 
-export const defaultParams: Params = {
-  class: Classes.default,
-  type: Types.default,
-  rarity: Rarity.default,
-  minionType: MinionType.default,
-  page: pageNumber,
-};
-
-export class CardStore {
+export class CardStore implements StoreOfCards {
   @observable public cards: Array<CardModel> = [];
   @observable public error: boolean = false;
   @observable public isLoading: boolean = false;
-  @observable public params: Params = defaultParams;
 
+  @observable public classType: Classes = Classes.default;
+  @observable public type: Types = Types.default;
+  @observable public rarity: Rarity = Rarity.default;
+  @observable public minionType: MinionType = MinionType.default;
   public valueInput: string = '';
-  private page: number = pageNumber;
-  private HeartstoneAPI: CardsAPI;
 
-  public constructor(http: HttpAPI, params: Params) {
-    makeObservable(this);
-    this.HeartstoneAPI = new CardsAPI(http, params);
-  }
+  private page: number = pageNumber;
+
+  private HeartstoneAPI: HeartStoneAPI;
 
   @computed public get cardsList() {
     return toJS(this.cards);
+  }
+
+  public constructor(cardsAPI: HeartStoneAPI) {
+    makeObservable(this);
+    this.HeartstoneAPI = cardsAPI;
   }
 
   @action.bound public cleanCards: () => void = () => {
@@ -47,32 +50,61 @@ export class CardStore {
     this.page = 1;
   };
 
-  @action.bound public setValue: (text: string) => void = (text) => {
+  @action.bound
+  public setSearchValue: (text: string) => void = (text) => {
     this.valueInput = text;
   };
 
-  @action.bound public setParams: (param: SelectParam) => void = (params) => {
-    this.params = {
-      ...this.params,
-      ...params,
-    };
+  @action.bound
+  public setType: (type: Types) => void = (type) => {
+    this.type = type;
   };
 
-  @action.bound public fetchCards: () => void = async () => {
+  @action.bound
+  public setClass: (classType: Classes) => void = (classType) => {
+    this.classType = classType;
+  };
+
+  @action.bound
+  public setRarity: (rarity: Rarity) => void = (rarity) => {
+    this.rarity = rarity;
+  };
+
+  @action.bound
+  public setMinionType: (minionType: MinionType) => void = (minionType) => {
+    this.minionType = minionType;
+  };
+
+  @action.bound
+  public fetchCards: () => void = async () => {
     try {
       if (this.isLoading) {
         return;
       }
 
       this.isLoading = true;
-      const {cards} = await this.HeartstoneAPI.getCards({
+
+      const {
+        cards,
+        pageCount,
+      }: {
+        cards: Array<CardModel>;
+        pageCount: number;
+      } = await this.HeartstoneAPI.getCards({
         textFilter: this.valueInput,
-        ...this.params,
+        minionType: this.minionType,
+        classType: this.classType,
+        type: this.type,
+        rarity: this.rarity,
         page: this.page,
       });
-      console.log({cards: this.cards});
+
+      if (pageCount < this.page) {
+        return;
+      }
 
       this.cards = [...this.cards, ...cards];
+
       this.page = this.page + pageNumber;
     } catch (error) {
       this.error = true;

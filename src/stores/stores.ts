@@ -1,5 +1,5 @@
-import {Params} from '../api/CardAPI';
-import {Http, HttpAPI} from '../api/http_api';
+import {CardsAPI, HeartStoneAPI} from '../api/CardAPI';
+import {Http} from '../api/http_api';
 import {CardStore} from './cards';
 
 export enum Stores {
@@ -10,24 +10,21 @@ export enum Stores {
 export class RootStore {
   public [Stores.Cards]: CardStore;
 
-  private http: HttpAPI;
-  private params: Params;
-
-  public constructor(http: HttpAPI, params: Params) {
-    this.http = http;
-    this.params = params;
-
-    this[Stores.Cards] = new CardStore(this.http, this.params);
+  public constructor(HeartstoneAPI: HeartStoneAPI) {
+    this[Stores.Cards] = new CardStore(HeartstoneAPI);
   }
 }
 
 export const createRootStore = (): RootStore => {
-  const params = {
-    access_token: 'USVLLTsXNnj2RZEIEGgGrtzxpl6JEWAIbY',
+  const defaultParams = {
+    access_token: 'USjGhEOktER1AqKh3PkasdpxwGsWxBpSqq',
     locale: 'en_US',
   };
 
-  const http = new Http('https://us.api.blizzard.com/hearthstone/', params);
-  const rootStore = new RootStore(http, params);
+  const http = new Http('https://us.api.blizzard.com/hearthstone/', {
+    params: defaultParams,
+  });
+  const HeartstoneAPI = new CardsAPI(http);
+  const rootStore = new RootStore(HeartstoneAPI);
   return rootStore;
 };
