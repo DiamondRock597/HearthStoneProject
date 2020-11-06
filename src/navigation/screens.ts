@@ -1,8 +1,8 @@
-import {CardModel} from '../models/Card';
+import {Card as CardModel} from '../models/card';
 
 export enum RootScreens {
   Home = 'Home',
-  Addition = 'Adition',
+  Addition = 'Addition',
   Discription = 'Discription',
 }
 export type RootStackParamList = {

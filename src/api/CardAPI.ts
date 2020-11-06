@@ -1,5 +1,6 @@
-import {CardDTO} from '../dto/CardsDTO';
-import {CardModel} from '../models/Card';
+import {Card as CardDTO} from '../dto/card';
+import {Set as SetDTO} from '../dto/set';
+import {Card as CardModel} from '../models/card';
 import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
 import {HttpAPI} from './http_api';
 
@@ -16,6 +17,8 @@ export interface HeartStoneAPI {
   getCards: (
     params: Params,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
+
+  getSets: () => void;
 }
 
 export class CardsAPI implements HeartStoneAPI {
@@ -45,8 +48,14 @@ export class CardsAPI implements HeartStoneAPI {
       },
     });
 
-    const cards = res.cards.map((item: CardDTO) => CardModel.Parse(item));
+    const cards = await res.cards.map((item: CardDTO) => CardModel.Parse(item));
+
     const {pageCount}: {pageCount: number} = res;
+
     return {cards, pageCount};
+  };
+
+  public getSets: () => void = async () => {
+    const res = await this.http.get<Array<SetDTO>>('metadata/sets');
   };
 }

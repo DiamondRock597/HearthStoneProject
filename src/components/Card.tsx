@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import {CardModel} from '../models/Card';
+import {Card as CardModel} from '../models/card';
 
 interface Props {
   item: CardModel;

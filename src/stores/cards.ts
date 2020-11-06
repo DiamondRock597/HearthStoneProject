@@ -2,12 +2,12 @@ import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
 import {HeartStoneAPI} from '../api/CardAPI';
 
-import {CardModel} from '../models/Card';
+import {Card as CardModel} from '../models/card';
 import {Classes, Types, Rarity, MinionType} from '../models/card_filters';
 
 const pageNumber: number = 1;
 
-interface StoreOfCards {
+export interface StoreOfCards {
   cardsList: Array<CardModel>;
 
   cleanCards: () => void;

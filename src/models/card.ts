@@ -1,6 +1,6 @@
-import {CardDTO} from '../dto/CardsDTO';
+import {Card as CardDTO} from '../dto/card';
 
-export class CardModel {
+export class Card {
   public id: number;
   public img: string;
   public name: string;
@@ -28,8 +28,8 @@ export class CardModel {
     this.durability = durability;
     this.text = text;
   }
-  public static Parse: (item: CardDTO) => CardModel = (item) =>
-    new CardModel(
+  public static Parse: (item: CardDTO) => Card = (item) =>
+    new Card(
       item.id,
       item.image,
       item.name,

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HTMLView from 'react-native-htmlview';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
-import {CardModel} from '../models/Card';
+import {Card as CardModel} from '../models/card';
 
 import {styles} from '../styles/discription';
 

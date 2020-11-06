@@ -1,30 +1,19 @@
+import {inject, observer} from 'mobx-react';
 import React from 'react';
 import {View, Text} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {Stores} from '../stores/stores';
 
-const items = [
-  {label: 'Warrior', value: 'Warrior'},
-  {label: 'Priest', value: 'Priest'},
-  {label: 'Mage', value: 'Mage'},
-  {label: 'Rogue', value: 'Rogue'},
-  {label: 'Druid', value: 'Druid'},
-  {label: 'Shaman', value: 'Shaman'},
-  {label: 'DemonHunter', value: 'DemonHunter'},
-  {label: 'Paladin', value: 'Paladin'},
-];
-
-export const Addition = () => {
-  return (
-    <View>
-      <Text>Addition</Text>
-      <DropDownPicker
-        style={{marginVertical: 20}}
-        items={items}
-        dropDownStyle={{marginTop: 15}}
-        itemStyle={{
-          backgroundColor: 'white',
-        }}
-      />
-    </View>
-  );
-};
+@inject(Stores.Sets)
+@observer
+export class Addition extends React.Component {
+  public componentDidMount() {
+    this.props.sets.getSets();
+  }
+  public render() {
+    return (
+      <View>
+        <Text>132</Text>
+      </View>
+    );
+  }
+}

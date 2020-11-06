@@ -1,4 +1,4 @@
-export interface CardDTO {
+export interface Card {
   id: number;
   collectible: number;
   slug: string;

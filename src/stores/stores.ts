@@ -1,17 +1,20 @@
 import {CardsAPI, HeartStoneAPI} from '../api/CardAPI';
 import {Http} from '../api/http_api';
-import {CardStore} from './cards';
+import {CardStore, StoreOfCards} from './cards';
+import {SetsStore} from './sets';
 
 export enum Stores {
   Cards = 'cards',
-  Adition = 'adition',
+  Sets = 'sets',
 }
 
 export class RootStore {
-  public [Stores.Cards]: CardStore;
+  public [Stores.Cards]: StoreOfCards;
+  public [Stores.Sets]: SetsStore;
 
   public constructor(HeartstoneAPI: HeartStoneAPI) {
     this[Stores.Cards] = new CardStore(HeartstoneAPI);
+    this[Stores.Sets] = new SetsStore(HeartstoneAPI);
   }
 }
 

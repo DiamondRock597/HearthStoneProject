@@ -20,7 +20,6 @@ export class Http implements HttpAPI {
 
   public async get<T>(url: string, config?: RequestConfig) {
     const res = await this.axiosInstance.get<T>(url, config);
-    console.log(res);
 
     return res.data;
   }

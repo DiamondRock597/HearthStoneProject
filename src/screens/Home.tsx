@@ -14,7 +14,7 @@ import {RouteProp} from '@react-navigation/native';
 import {Stores} from '../stores/stores';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {CardStore} from '../stores/cards';
-import {CardModel} from '../models/Card';
+import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';
 
 import {styles} from '../styles/home';
@@ -80,8 +80,6 @@ export class Home extends React.Component<Props> {
   };
 
   private fetchCards: () => void = () => {
-    console.log('ENd');
-
     this.props.cards.fetchCards();
   };
 
