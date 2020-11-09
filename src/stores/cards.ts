@@ -33,7 +33,6 @@ export class CardStore implements StoreOfCards {
   public valueInput: string = '';
 
   private page: number = pageNumber;
-
   private HeartstoneAPI: HeartStoneAPI;
 
   @computed public get cardsList() {

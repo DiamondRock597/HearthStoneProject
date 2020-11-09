@@ -28,6 +28,7 @@ export class Card {
     this.durability = durability;
     this.text = text;
   }
+
   public static Parse: (item: CardDTO) => Card = (item) =>
     new Card(
       item.id,

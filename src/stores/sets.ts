@@ -1,9 +1,10 @@
-import {observable, makeObservable} from 'mobx';
+import {observable, makeObservable, action} from 'mobx';
+
 import {HeartStoneAPI} from '../api/CardAPI';
-import {Set as SetDTO} from '../dto/set';
+import {SetModel} from '../models/set';
 
 export class SetsStore {
-  @observable public sets: Array<SetDTO> = [];
+  @observable public sets: Array<SetModel> = [];
 
   public SetsHTTP: HeartStoneAPI;
 
@@ -12,7 +13,7 @@ export class SetsStore {
     makeObservable(this);
   }
 
-  public getSets: () => void = () => {
-    this.SetsHTTP.getSets();
+  @action.bound public getSets: () => void = async () => {
+    this.sets = await this.SetsHTTP.getSets();
   };
 }

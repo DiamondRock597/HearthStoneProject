@@ -1,7 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Dimensions, ScaledSize} from 'react-native';
-import {TabNavigation} from '../tab/TabNavigation';
 import {inject, observer} from 'mobx-react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -12,6 +11,7 @@ import {Params} from '../../api/CardAPI';
 import {Stores} from '../../stores/stores';
 import {CardStore} from '../../stores/cards';
 import {Classes, Types, Rarity, MinionType} from '../../models/card_filters';
+import {Home} from '../../screens/Home';
 
 const Drawer = createDrawerNavigator();
 const {height}: ScaledSize = Dimensions.get('window');
@@ -33,6 +33,7 @@ export class DrawerNavigation extends React.Component<Props, State> {
   public render() {
     return (
       <Drawer.Navigator
+        initialRouteName={RootScreens.Home}
         drawerContentOptions={{
           itemStyle: {
             backgroundColor: 'white',
@@ -41,7 +42,7 @@ export class DrawerNavigation extends React.Component<Props, State> {
         }}>
         <Drawer.Screen
           name={RootScreens.Home}
-          component={TabNavigation}
+          component={Home}
           options={() => ({
             drawerLabel: () => (
               <TypeDrawer

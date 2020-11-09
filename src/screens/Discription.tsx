@@ -59,9 +59,7 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
                   <Text style={styles.answer}>{card.manaCost}</Text>
                 </View>
               </View>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             {card.attack ? (
               <View style={styles.block}>
@@ -71,9 +69,7 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
                   <Text style={styles.answer}>{card.attack}</Text>
                 </View>
               </View>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             {card.health ? (
               <View style={styles.block}>
@@ -83,9 +79,7 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
                   <Text style={styles.answer}>{card.health}</Text>
                 </View>
               </View>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             {card.durability ? (
               <View style={styles.block}>

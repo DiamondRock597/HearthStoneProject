@@ -1,45 +1,57 @@
 import React from 'react';
-import {DrawerActions, NavigationContainer} from '@react-navigation/native';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image} from 'react-native';
 
-import {RootScreens, RootStackParamList} from './screens';
-import {DrawerNavigation} from './drawer/DrawerNavigation';
-import {Discription} from '../screens/Discription';
-import {MenuButton} from '../components/MenuButton';
+import {RootScreens} from './screens';
+import {HomeStack} from './stack/Home';
+import {AdditionStack} from './stack/Addition';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const tabIcon = (color: string) => ({tintColor: color, width: 40, height: 40});
 
 export const MainNavigation = () => (
   <NavigationContainer>
-    <Stack.Navigator
-      screenOptions={{
-        headerTitleStyle: {fontSize: 23, color: 'white'},
-        headerTitleAlign: 'center',
-        headerStyle: {backgroundColor: '#807c74'},
-        headerTintColor: 'white',
-      }}
-      initialRouteName={RootScreens.Home}>
-      <Stack.Screen
+    <Tab.Navigator
+      tabBarOptions={{
+        labelPosition: 'beside-icon',
+        labelStyle: {fontSize: 15},
+        activeTintColor: '#ebcf96',
+        inactiveTintColor: 'white',
+        tabStyle: {backgroundColor: '#4d4c3f'},
+      }}>
+      <Tab.Screen
         name={RootScreens.Home}
-        component={DrawerNavigation}
-        options={({
-          navigation,
-        }: {
-          navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
-        }) => ({
-          headerLeft: () => (
-            <MenuButton
-              handleOpen={() =>
-                navigation.dispatch(DrawerActions.toggleDrawer())
-              }
+        component={HomeStack}
+        options={{
+          tabBarIcon: (props) => (
+            <Image
+              style={tabIcon(props.color)}
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_HOF.png',
+              }}
             />
           ),
-        })}
+        }}
       />
-      <Stack.Screen name={RootScreens.Discription} component={Discription} />
-    </Stack.Navigator>
+
+      <Tab.Screen
+        name={RootScreens.Addition}
+        component={AdditionStack}
+        options={{
+          tabBarIcon: (props) => (
+            <Image
+              style={tabIcon(props.color)}
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png',
+              }}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   </NavigationContainer>
 );
