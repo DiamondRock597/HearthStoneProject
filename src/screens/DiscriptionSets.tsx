@@ -1,13 +1,20 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Dimensions, ScaledSize, ScrollView, View} from 'react-native';
+import {
+  Button,
+  Dimensions,
+  ScaledSize,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {styles} from '../styles/discriptiomSets';
 
-const {height, width}: ScaledSize = Dimensions.get('window');
+const {width}: ScaledSize = Dimensions.get('window');
 
 interface Props {
   navigation: StackNavigationProp<
@@ -20,16 +27,34 @@ interface Props {
 export const DiscriptionSets: React.FC<Props> = ({
   route,
   navigation,
-}: Props) => {
-  navigation.setOptions({title: route.params.item.name});
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
+}: Props) => (
+  <ScrollView contentContainerStyle={styles.background}>
+    <View style={styles.container}>
       <View>
         <AutoHeightImage
           width={width}
           source={{uri: route.params.item.image}}
         />
       </View>
-    </ScrollView>
-  );
-};
+      <View style={styles.blockTitle}>
+        <Text style={styles.name}>Name: </Text>
+        <Text style={styles.title}>{route.params.item.name}</Text>
+      </View>
+      <View style={styles.blockTitle}>
+        <Text style={styles.name}>Type: </Text>
+        <Text style={styles.title}>{route.params.item.type}</Text>
+      </View>
+      <View style={styles.blockTitle}>
+        <Text style={styles.name}>Release Date: </Text>
+        <Text style={styles.title}>{route.params.item.releaseDate}</Text>
+      </View>
+    </View>
+    <View style={styles.btn}>
+      <Button
+        title="Cards in this Set"
+        onPress={() => navigation.navigate(RootScreens.CardsOfSets)}
+        color={'#4a967f'}
+      />
+    </View>
+  </ScrollView>
+);

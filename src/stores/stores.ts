@@ -20,7 +20,7 @@ export class RootStore {
 
 export const createRootStore = (): RootStore => {
   const defaultParams = {
-    access_token: 'USGJPfKYMvoz8jS3AJ1v3AgWcb8FQpxOgh',
+    access_token: 'USm0nvlRPRKgARdHijAaE0VjzHOAeHglWm',
     locale: 'en_US',
   };
 
