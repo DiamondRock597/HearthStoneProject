@@ -13,7 +13,7 @@ import {RouteProp} from '@react-navigation/native';
 
 import {Stores} from '../stores/stores';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
-import {CardStore} from '../stores/cards';
+import {StoreOfCards} from '../stores/cards';
 import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';
 
@@ -22,7 +22,7 @@ import {styles} from '../styles/home';
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
   route: RouteProp<RootStackParamList, RootScreens.Home>;
-  cards: CardStore;
+  cards: StoreOfCards;
 }
 
 @inject(Stores.Cards)

@@ -9,6 +9,7 @@ export class SetModel {
   public type: string;
   public image: string;
   public releaseDate: string;
+  public slug: string;
 
   public constructor(
     id: number,
@@ -16,11 +17,13 @@ export class SetModel {
     type: string,
     image: string,
     releaseDate: string,
+    slug: string,
   ) {
     this.id = id;
     this.name = name;
-    this.type = type;
+    this.type = type.length ? type : 'Base';
     this.image = image;
+    this.slug = slug;
 
     this.releaseDate = new Date(releaseDate)
       .toDateString()
@@ -34,5 +37,6 @@ export class SetModel {
       item.type,
       imageURL[item.id] || defaultImageURL,
       item.releaseDate,
+      item.slug,
     );
 }

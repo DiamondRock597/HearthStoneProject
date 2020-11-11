@@ -9,6 +9,9 @@ const pageNumber: number = 1;
 
 export interface StoreOfCards {
   cardsList: Array<CardModel>;
+  valueInput: string;
+  error: boolean;
+  isLoading: boolean;
 
   cleanCards: () => void;
 

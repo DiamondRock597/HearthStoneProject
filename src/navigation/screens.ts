@@ -13,5 +13,5 @@ export type RootStackParamList = {
   [RootScreens.Addition]: undefined;
   [RootScreens.Discription]: {card: CardModel};
   [RootScreens.DiscriptionSets]: {item: SetModel};
-  [RootScreens.CardsOfSets]: {card: CardModel};
+  [RootScreens.CardsOfSets]: {name: string};
 };

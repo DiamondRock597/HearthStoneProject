@@ -24,8 +24,10 @@ export const styles = StyleSheet.create({
   blockTitle: {
     paddingVertical: 5,
     paddingHorizontal: 20,
+    paddingTop: 10,
   },
   btn: {
     width: 200,
+    paddingTop: 20,
   },
 });

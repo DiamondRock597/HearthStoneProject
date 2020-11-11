@@ -12,6 +12,7 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
+
 import {styles} from '../styles/discriptiomSets';
 
 const {width}: ScaledSize = Dimensions.get('window');
@@ -52,7 +53,11 @@ export const DiscriptionSets: React.FC<Props> = ({
     <View style={styles.btn}>
       <Button
         title="Cards in this Set"
-        onPress={() => navigation.navigate(RootScreens.CardsOfSets)}
+        onPress={() =>
+          navigation.navigate(RootScreens.CardsOfSets, {
+            name: route.params.item.slug,
+          })
+        }
         color={'#4a967f'}
       />
     </View>

@@ -1,17 +1,16 @@
 import React from 'react';
-
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Image} from 'react-native';
-
-import {RootScreens, RootStackParamList} from '../screens';
-import {DrawerNavigation} from '../drawer/DrawerNavigation';
-import {Addition} from '../../screens/Addition';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {MenuButton} from '../../components/MenuButton';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image} from 'react-native';
 import {DrawerActions} from '@react-navigation/native';
+
+import {RootScreens, RootStackParamList} from '../screens';
+import {DrawerNavigation} from '../drawer/DrawerNavigation';
+import {Addition} from '../../screens/Addition';
+import {MenuButton} from '../../components/MenuButton';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
