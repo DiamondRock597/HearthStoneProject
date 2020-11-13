@@ -8,6 +8,7 @@ import HTMLView from 'react-native-htmlview';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {Card as CardModel} from '../models/card';
+import {icons, Characteristic} from '../icons/icons';
 
 import {styles} from '../styles/discription';
 
@@ -24,25 +25,28 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
     <ScrollView style={styles.background}>
       <View style={styles.container}>
         <View style={styles.imageBlock}>
-          <AutoHeightImage
-            width={225}
-            source={{
-              uri: card.img,
-            }}
-          />
+          <View style={styles.image}>
+            <AutoHeightImage
+              width={225}
+              source={{
+                uri: card.img,
+              }}
+            />
+          </View>
           <View style={styles.textBlock}>
             <View style={styles.block}>
               <View style={styles.textBlockWithIcon}>
                 <Image
                   style={styles.icon}
                   source={{
-                    uri:
-                      'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Classic.png',
+                    uri: icons.discription[Characteristic.Name],
                   }}
                 />
                 <Text style={styles.title}>Name:</Text>
               </View>
-              <Text style={styles.answer}>{card.name}</Text>
+              <Text style={styles.answer} numberOfLines={2}>
+                {card.name}
+              </Text>
             </View>
 
             {card.manaCost !== undefined ? (
@@ -51,8 +55,7 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
                   <Image
                     style={styles.icon}
                     source={{
-                      uri:
-                        'https://www.pngjoy.com/pngl/371/6882643_crystal-icon-hearthstone-mana-png-transparent-png.png',
+                      uri: icons.discription[Characteristic.Manacost],
                     }}
                   />
                   <Text style={styles.title}>Manacost:</Text>
@@ -93,7 +96,7 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
           </View>
         </View>
       </View>
-      <Text style={styles.headerDiscr}>Discription</Text>
+      <Text style={styles.headerDiscr}>{card.name}</Text>
       <View style={styles.discription}>
         <HTMLView value={discr} stylesheet={stylesHTML} />
       </View>

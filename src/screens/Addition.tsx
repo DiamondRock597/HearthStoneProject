@@ -1,6 +1,6 @@
 import {inject, observer} from 'mobx-react';
 import React from 'react';
-import {View} from 'react-native';
+import {ListRenderItemInfo, View} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -29,9 +29,7 @@ export class Addition extends React.Component<Props> {
       <View style={styles.background}>
         <FlatGrid
           data={this.props.sets.sets}
-          renderItem={({item}: {item: SetModel}) => (
-            <Set onPress={this.handlePress} item={item} />
-          )}
+          renderItem={this.renderItem}
           itemDimension={400}
           spacing={10}
           keyExtractor={(item) => item.id.toString()}
@@ -39,6 +37,14 @@ export class Addition extends React.Component<Props> {
       </View>
     );
   }
+
+  private keyExtractor(item: SetModel) {
+    return `Set - ${item.id}`;
+  }
+
+  private renderItem = ({item}: ListRenderItemInfo<SetModel>) => (
+    <Set onPress={this.handlePress} item={item} />
+  );
 
   private handlePress: (item: SetModel) => void = (item) => {
     this.props.navigation.navigate(RootScreens.DiscriptionSets, {item});

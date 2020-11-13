@@ -16,7 +16,9 @@ export const styles = StyleSheet.create({
   textBlock: {
     alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingHorizontal: 8,
+
+    marginLeft: 40,
+    flex: 1,
   },
   textBlockWithIcon: {
     flexDirection: 'row',
@@ -49,5 +51,9 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 40,
     textAlign: 'center',
+  },
+  image: {
+    flex: 1,
+    marginLeft: 10,
   },
 });

@@ -21,7 +21,10 @@ export interface HeartStoneAPI {
 
   getSets: () => Promise<Array<SetModel>>;
 
-  getCardsOfCollection: (name: string) => Promise<{cards: Array<CardModel>}>;
+  getCardsOfCollection: (
+    id: number,
+    page: number,
+  ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
 }
 
 export class CardsAPI implements HeartStoneAPI {
@@ -67,16 +70,24 @@ export class CardsAPI implements HeartStoneAPI {
   };
 
   public getCardsOfCollection: (
-    name: string,
-  ) => Promise<{cards: Array<CardModel>}> = async (name) => {
-    const res = await this.http.get<{cards: Array<CardDTO>}>('cards', {
-      params: {
-        set: name,
+    id: number,
+    page: number,
+  ) => Promise<{cards: Array<CardModel>; pageCount: number}> = async (
+    id,
+    page,
+  ) => {
+    const res = await this.http.get<{cards: Array<CardDTO>; pageCount: number}>(
+      'cards',
+      {
+        params: {
+          set: id,
+          page,
+        },
       },
-    });
+    );
 
     const cards = await res.cards.map((item: CardDTO) => CardModel.Parse(item));
-
-    return {cards};
+    const {pageCount}: {pageCount: number} = await res;
+    return {cards, pageCount};
   };
 }

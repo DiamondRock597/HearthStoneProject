@@ -5,6 +5,8 @@ import {
   TextInput,
   Text,
   ListRenderItemInfo,
+  Dimensions,
+  ScaledSize,
 } from 'react-native';
 import {observer, inject} from 'mobx-react';
 import {FlatGrid} from 'react-native-super-grid';
@@ -18,6 +20,10 @@ import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';
 
 import {styles} from '../styles/home';
+
+const {width}: ScaledSize = Dimensions.get('window');
+const paddingBetweenItems = 27;
+const countItemsInRow = 2;
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
@@ -65,13 +71,15 @@ export class Home extends React.Component<Props> {
           ListHeaderComponent={this.cardsHeaderComponent}
           data={this.props.cards.cardsList}
           renderItem={this.renderItem}
-          itemDimension={192}
-          keyExtractor={(item) => item.id.toString()}
+          itemDimension={(width - paddingBetweenItems) / countItemsInRow}
+          keyExtractor={this.keyExtractor}
           spacing={8}
         />
       </View>
     );
   }
+
+  private keyExtractor = (item: CardModel) => `Card - ${item.id}`;
 
   private handleChangeInput: (text: string) => void = (text) => {
     this.props.cards.setSearchValue(text);
