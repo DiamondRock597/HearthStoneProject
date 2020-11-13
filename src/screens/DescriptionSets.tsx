@@ -14,19 +14,19 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {SetModel} from '../models/set';
 
-import {styles} from '../styles/discriptiomSets';
+import {styles} from '../styles/descriptionSets';
 
 const {width}: ScaledSize = Dimensions.get('window');
 
 interface Props {
   navigation: StackNavigationProp<
     RootStackParamList,
-    RootScreens.DiscriptionSets
+    RootScreens.DescriptionSets
   >;
-  route: RouteProp<RootStackParamList, RootScreens.DiscriptionSets>;
+  route: RouteProp<RootStackParamList, RootScreens.DescriptionSets>;
 }
 
-export class DiscriptionSets extends React.Component<Props> {
+export class DescriptionSets extends React.Component<Props> {
   public render() {
     const {navigation}: Props = this.props;
     const {
@@ -61,7 +61,8 @@ export class DiscriptionSets extends React.Component<Props> {
             title="Cards in this Set"
             onPress={() =>
               navigation.navigate(RootScreens.CardsOfSets, {
-                id: id,
+                id,
+                name,
               })
             }
             color={'#4a967f'}

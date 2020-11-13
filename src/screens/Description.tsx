@@ -1,23 +1,25 @@
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {View, Text, Image, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HTMLView from 'react-native-htmlview';
 
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {Card as CardModel} from '../models/card';
-import {icons, Characteristic} from '../icons/icons';
+import {
+  DescriptionValue,
+  DescriptionValues,
+} from '../components/DescriptionValue';
 
-import {styles} from '../styles/discription';
+import {styles} from '../styles/description';
 
 interface Props {
-  navigation: StackNavigationProp<RootStackParamList, RootScreens.Discription>;
-  route: RouteProp<RootStackParamList, RootScreens.Discription>;
+  navigation: StackNavigationProp<RootStackParamList, RootScreens.Description>;
+  route: RouteProp<RootStackParamList, RootScreens.Description>;
 }
 
-export const Discription: React.FC<Props> = ({route}: Props) => {
+export const Description: React.FC<Props> = ({route}: Props) => {
   const {card}: {card: CardModel} = route.params;
   const discr: string = `<p> ${card.text}</p>`;
 
@@ -34,70 +36,43 @@ export const Discription: React.FC<Props> = ({route}: Props) => {
             />
           </View>
           <View style={styles.textBlock}>
-            <View style={styles.block}>
-              <View style={styles.textBlockWithIcon}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri: icons.discription[Characteristic.Name],
-                  }}
-                />
-                <Text style={styles.title}>Name:</Text>
-              </View>
-              <Text style={styles.answer} numberOfLines={2}>
-                {card.name}
-              </Text>
-            </View>
+            <DescriptionValue
+              valueType={DescriptionValues.Name}
+              value={card.name}
+            />
 
             {card.manaCost !== undefined ? (
-              <View style={styles.block}>
-                <View style={styles.textBlockWithIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={{
-                      uri: icons.discription[Characteristic.Manacost],
-                    }}
-                  />
-                  <Text style={styles.title}>Manacost:</Text>
-                  <Text style={styles.answer}>{card.manaCost}</Text>
-                </View>
-              </View>
+              <DescriptionValue
+                valueType={DescriptionValues.Manacost}
+                value={card.manaCost}
+              />
             ) : null}
 
             {card.attack ? (
-              <View style={styles.block}>
-                <View style={styles.textBlockWithIcon}>
-                  <Icon name={'sword'} size={18} />
-                  <Text style={styles.title}>Attack:</Text>
-                  <Text style={styles.answer}>{card.attack}</Text>
-                </View>
-              </View>
+              <DescriptionValue
+                valueType={DescriptionValues.Attack}
+                value={card.attack}
+              />
             ) : null}
 
             {card.health ? (
-              <View style={styles.block}>
-                <View style={styles.textBlockWithIcon}>
-                  <Icon name={'heart'} size={18} color={'red'} />
-                  <Text style={styles.title}>Health:</Text>
-                  <Text style={styles.answer}>{card.health}</Text>
-                </View>
-              </View>
+              <DescriptionValue
+                valueType={DescriptionValues.Health}
+                value={card.health}
+              />
             ) : null}
 
             {card.durability ? (
-              <View style={styles.block}>
-                <View style={styles.textBlockWithIcon}>
-                  <Icon name={'shield'} size={18} color={'gray'} />
-                  <Text style={styles.title}>Durability:</Text>
-                  <Text style={styles.answer}>{card.durability}</Text>
-                </View>
-              </View>
+              <DescriptionValue
+                valueType={DescriptionValues.Durability}
+                value={card.durability}
+              />
             ) : null}
           </View>
         </View>
       </View>
       <Text style={styles.headerDiscr}>{card.name}</Text>
-      <View style={styles.discription}>
+      <View style={styles.description}>
         <HTMLView value={discr} stylesheet={stylesHTML} />
       </View>
     </ScrollView>

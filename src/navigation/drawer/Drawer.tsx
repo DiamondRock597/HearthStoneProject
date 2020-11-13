@@ -65,7 +65,7 @@ export const TypeDrawer: React.FC<Props> = ({
   <View style={{height}}>
     <DropDownPicker
       placeholder="Select class"
-      dropDownMaxHeight={500}
+      dropDownMaxHeight={height}
       style={styles.block}
       items={classes}
       containerStyle={styles.containerStyle}
@@ -75,7 +75,7 @@ export const TypeDrawer: React.FC<Props> = ({
 
     <DropDownPicker
       placeholder="Select type"
-      dropDownMaxHeight={500}
+      dropDownMaxHeight={height}
       style={styles.block}
       items={types}
       containerStyle={styles.containerStyle}
@@ -85,7 +85,7 @@ export const TypeDrawer: React.FC<Props> = ({
 
     <DropDownPicker
       placeholder="Select rarity"
-      dropDownMaxHeight={500}
+      dropDownMaxHeight={height}
       style={styles.block}
       items={rarity}
       containerStyle={styles.containerStyle}
@@ -95,7 +95,7 @@ export const TypeDrawer: React.FC<Props> = ({
 
     <DropDownPicker
       placeholder="Select Minion Type"
-      dropDownMaxHeight={500}
+      dropDownMaxHeight={height}
       style={styles.block}
       items={minionType}
       containerStyle={styles.containerStyle}

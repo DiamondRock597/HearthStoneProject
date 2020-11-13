@@ -8,10 +8,12 @@ export interface StoreOfSets {
   cardsList: Array<CardModel>;
   isLoading: boolean;
   error: boolean;
+  valueInput: string;
 
   getSets: () => void;
   fetchCards: (id: number) => void;
   cleanCards: () => void;
+  setSearchValue: (text: string) => void;
 }
 
 const pageNumber: number = 1;
@@ -21,6 +23,7 @@ export class SetsStore implements StoreOfSets {
   @observable public collectionCards: Array<CardModel> = [];
   @observable public isLoading: boolean = false;
   @observable public error: boolean = false;
+  @observable public valueInput: string = '';
 
   private SetsHTTP: HeartStoneAPI;
   private page: number = pageNumber;
@@ -42,6 +45,10 @@ export class SetsStore implements StoreOfSets {
     this.page = pageNumber;
   };
 
+  @action.bound public setSearchValue: (text: string) => void = (text) => {
+    this.valueInput = text;
+  };
+
   @action.bound public fetchCards: (id: number) => void = async (id) => {
     try {
       if (this.isLoading) {
@@ -56,7 +63,11 @@ export class SetsStore implements StoreOfSets {
       }: {
         cards: Array<CardModel>;
         pageCount: number;
-      } = await this.SetsHTTP.getCardsOfCollection(id, this.page);
+      } = await this.SetsHTTP.getCardsOfCollection(
+        id,
+        this.page,
+        this.valueInput,
+      );
 
       if (pageCount < this.page) {
         return;

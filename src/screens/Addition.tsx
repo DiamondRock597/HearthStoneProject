@@ -32,7 +32,7 @@ export class Addition extends React.Component<Props> {
           renderItem={this.renderItem}
           itemDimension={400}
           spacing={10}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={this.keyExtractor}
         />
       </View>
     );
@@ -47,6 +47,6 @@ export class Addition extends React.Component<Props> {
   );
 
   private handlePress: (item: SetModel) => void = (item) => {
-    this.props.navigation.navigate(RootScreens.DiscriptionSets, {item});
+    this.props.navigation.navigate(RootScreens.DescriptionSets, {item});
   };
 }

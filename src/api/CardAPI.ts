@@ -24,6 +24,7 @@ export interface HeartStoneAPI {
   getCardsOfCollection: (
     id: number,
     page: number,
+    textFilter?: string,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
 }
 
@@ -72,9 +73,11 @@ export class CardsAPI implements HeartStoneAPI {
   public getCardsOfCollection: (
     id: number,
     page: number,
+    textFilter?: string,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}> = async (
     id,
     page,
+    textFilter,
   ) => {
     const res = await this.http.get<{cards: Array<CardDTO>; pageCount: number}>(
       'cards',
@@ -82,6 +85,7 @@ export class CardsAPI implements HeartStoneAPI {
         params: {
           set: id,
           page,
+          textFilter,
         },
       },
     );

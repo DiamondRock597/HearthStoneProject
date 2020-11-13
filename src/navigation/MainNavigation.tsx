@@ -7,8 +7,8 @@ import {
 
 import {RootScreens, RootStackParamList} from './screens';
 import {TabNavigation} from './tab/Tab';
-import {Discription} from '../screens/Description';
-import {DiscriptionSets} from '../screens/DiscriptionSets';
+import {Description} from '../screens/Description';
+import {DescriptionSets} from '../screens/DescriptionSets';
 import {CardsOfSets} from '../screens/CardsOfSets';
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -26,7 +26,7 @@ export const MainNavigation = () => (
     <Stack.Navigator
       initialRouteName={RootScreens.Home}
       screenOptions={{
-        headerTitleStyle: {fontSize: 23, color: 'white'},
+        headerTitleStyle: {fontSize: 20, color: 'white'},
         headerTitleAlign: 'center',
         headerStyle: {backgroundColor: '#807c74'},
         headerTintColor: 'white',
@@ -36,15 +36,23 @@ export const MainNavigation = () => (
         component={TabNavigation}
         options={{headerShown: false}}
       />
-      <Stack.Screen name={RootScreens.Discription} component={Discription} />
+      <Stack.Screen name={RootScreens.Description} component={Description} />
       <Stack.Screen
-        name={RootScreens.DiscriptionSets}
-        component={DiscriptionSets}
+        name={RootScreens.DescriptionSets}
+        component={DescriptionSets}
         options={({route}: PropsForOptions) => ({
           headerTitle: route.params.item.name,
         })}
       />
-      <Stack.Screen name={RootScreens.CardsOfSets} component={CardsOfSets} />
+      <Stack.Screen
+        name={RootScreens.CardsOfSets}
+        component={CardsOfSets}
+        options={({
+          route,
+        }: {
+          route: RouteProp<RootStackParamList, RootScreens.CardsOfSets>;
+        }) => ({headerTitle: `Cards of ${route.params.name}`})}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

@@ -4,10 +4,10 @@ export class Card {
   public id: number;
   public img: string;
   public name: string;
-  public health: number;
-  public attack: number;
+  public health?: number;
+  public attack?: number;
   public manaCost: number;
-  public durability: number;
+  public durability?: number;
   public text: string;
   public constructor(
     id: number,

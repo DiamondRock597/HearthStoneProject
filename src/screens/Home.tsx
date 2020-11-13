@@ -18,12 +18,14 @@ import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {StoreOfCards} from '../stores/cards';
 import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {styles} from '../styles/home';
 
 const {width}: ScaledSize = Dimensions.get('window');
 const paddingBetweenItems = 27;
 const countItemsInRow = 2;
+const sizeIcons = 50;
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
@@ -49,9 +51,9 @@ export class Home extends React.Component<Props> {
 
   private get cardsEmptyComponent() {
     if (this.props.cards.isLoading) {
-      return <ActivityIndicator color="black" size={50} />;
+      return <ActivityIndicator color="black" size={sizeIcons} />;
     } else if (this.props.cards.error) {
-      return <Text>ERROR</Text>;
+      return <Icon size={sizeIcons} color="red" name="error" />;
     }
 
     return <Text>There is no such card</Text>;
@@ -79,7 +81,8 @@ export class Home extends React.Component<Props> {
     );
   }
 
-  private keyExtractor = (item: CardModel) => `Card - ${item.id}`;
+  private keyExtractor: (item: CardModel) => string = (item) =>
+    `Card - ${item.id}`;
 
   private handleChangeInput: (text: string) => void = (text) => {
     this.props.cards.setSearchValue(text);
@@ -92,7 +95,7 @@ export class Home extends React.Component<Props> {
   };
 
   private handlePress: (card: CardModel) => void = (card) => {
-    this.props.navigation.navigate(RootScreens.Discription, {card});
+    this.props.navigation.navigate(RootScreens.Description, {card});
   };
 
   private renderItem = ({item}: ListRenderItemInfo<CardModel>) => (

@@ -3,7 +3,6 @@ import {RootScreens} from '../navigation/screens';
 export enum Characteristic {
   Name = 'name',
   Manacost = 'manacost ',
-  Attack = 
 }
 
 export const icons = {
@@ -13,7 +12,7 @@ export const icons = {
     [RootScreens.Addition]:
       'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png',
   },
-  discription: {
+  description: {
     [Characteristic.Name]:
       'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Classic.png',
 

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
 
-    marginLeft: 40,
+    marginLeft: 60,
     flex: 1,
   },
   textBlockWithIcon: {
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
   block: {
     paddingBottom: 10,
   },
-  discription: {
+  description: {
     paddingVertical: 20,
     paddingHorizontal: 60,
     textAlign: 'center',
@@ -55,5 +55,21 @@ export const styles = StyleSheet.create({
   image: {
     flex: 1,
     marginLeft: 10,
+  },
+  descriptionInput: {
+    fontSize: 18,
+    borderColor: 'black',
+    borderRadius: 20,
+    borderWidth: 0.8,
+    marginVertical: 17,
+    marginHorizontal: 20,
+    padding: 15,
+    paddingHorizontal: 18,
+    color: 'gray',
+    backgroundColor: 'white',
+  },
+  inputBlock: {
+    paddingBottom: 5,
+    justifyContent: 'center',
   },
 });
