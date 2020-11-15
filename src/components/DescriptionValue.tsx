@@ -50,13 +50,13 @@ export const DescriptionValue: React.FC<Props> = ({
       {imagesMap[valueType]}
       <Text style={styles.title}>{valueType}:</Text>
       {valueType !== DescriptionValues.Name ? (
-        <Text style={styles.answer} numberOfLines={2}>
+        <Text style={styles.answer} numberOfLines={3}>
           {value}
         </Text>
       ) : null}
     </View>
     {valueType === DescriptionValues.Name ? (
-      <Text style={styles.answer} numberOfLines={2}>
+      <Text style={styles.answer} numberOfLines={3}>
         {value}
       </Text>
     ) : null}

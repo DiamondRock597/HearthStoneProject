@@ -11,6 +11,11 @@ export const icons = {
       'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_HOF.png',
     [RootScreens.Addition]:
       'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_Scholomancy.png',
+    [RootScreens.Options]:
+      'https://raw.githubusercontent.com/HearthSim/hs-icons/master/PNG/Set_GVG.png',
+    [RootScreens.DescriptionSets]: undefined,
+    [RootScreens.Description]: undefined,
+    [RootScreens.CardsOfSets]: undefined,
   },
   description: {
     [Characteristic.Name]:

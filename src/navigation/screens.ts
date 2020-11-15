@@ -7,6 +7,7 @@ export enum RootScreens {
   DescriptionSets = 'Add-on Description',
   Description = 'Description',
   CardsOfSets = 'Cards Of Sets',
+  Options = 'Options',
 }
 export type RootStackParamList = {
   [RootScreens.Home]: undefined;
@@ -14,4 +15,5 @@ export type RootStackParamList = {
   [RootScreens.Description]: {card: CardModel};
   [RootScreens.DescriptionSets]: {item: SetModel};
   [RootScreens.CardsOfSets]: {id: number; name: string};
+  [RootScreens.Options]: undefined;
 };

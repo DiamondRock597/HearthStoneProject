@@ -20,8 +20,8 @@ export class RootStore {
 
 export const createRootStore = (): RootStore => {
   const defaultParams = {
-    access_token: 'US3qgexf0n4OKYDeYlO1nkGoz79lSPB8Mi',
-    locale: 'en_US',
+    access_token: 'US2MhU1048oqAV5H57dmn8U5cPOiiTTAdB',
+    locale: 'ru_RU',
   };
 
   const http = new Http('https://us.api.blizzard.com/hearthstone/', {

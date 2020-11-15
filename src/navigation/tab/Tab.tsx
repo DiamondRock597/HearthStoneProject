@@ -5,6 +5,7 @@ import {RootScreens} from '../screens';
 import {HomeScreen as HomeStack} from '../stack/Home';
 import {AdditionScreen as AdditionStack} from '../stack/Addition';
 import {TabBarIcon} from './TabBarIcon';
+import {OptionsScreen as OptionsStack} from '../stack/Options';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,6 +33,15 @@ export const TabNavigation = () => (
       options={{
         tabBarIcon: (props) => (
           <TabBarIcon iconsType={RootScreens.Addition} color={props.color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name={RootScreens.Options}
+      component={OptionsStack}
+      options={{
+        tabBarIcon: (props) => (
+          <TabBarIcon iconsType={RootScreens.Options} color={props.color} />
         ),
       }}
     />
