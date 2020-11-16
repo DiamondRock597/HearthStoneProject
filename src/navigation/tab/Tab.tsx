@@ -6,6 +6,7 @@ import {HomeScreen as HomeStack} from '../stack/Home';
 import {AdditionScreen as AdditionStack} from '../stack/Addition';
 import {TabBarIcon} from './TabBarIcon';
 import {OptionsScreen as OptionsStack} from '../stack/Options';
+import {localisation} from '../../localisation/localisation';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +20,7 @@ export const TabNavigation = () => (
       tabStyle: {backgroundColor: '#4d4c3f'},
     }}>
     <Tab.Screen
-      name={RootScreens.Home}
+      name={localisation.t(`screens.${RootScreens.Home}`)}
       component={HomeStack}
       options={{
         tabBarIcon: (props) => (
@@ -28,7 +29,7 @@ export const TabNavigation = () => (
       }}
     />
     <Tab.Screen
-      name={RootScreens.Addition}
+      name={localisation.t(`screens.${RootScreens.Addition}`)}
       component={AdditionStack}
       options={{
         tabBarIcon: (props) => (
@@ -37,7 +38,7 @@ export const TabNavigation = () => (
       }}
     />
     <Tab.Screen
-      name={RootScreens.Options}
+      name={localisation.t(`screens.${RootScreens.Options}`)}
       component={OptionsStack}
       options={{
         tabBarIcon: (props) => (

@@ -1,0 +1,10 @@
+{
+    "platform":"Platform",
+    "desription":{
+        "Name":"Name",
+        "Manacost":"Manacost",
+        "Attack":"Attack",
+        "Health":"Health"
+    }
+
+}

@@ -10,6 +10,7 @@ import {TabNavigation} from './tab/Tab';
 import {Description} from '../screens/Description';
 import {DescriptionSets} from '../screens/DescriptionSets';
 import {CardsOfSets} from '../screens/CardsOfSets';
+import {localisation} from '../localisation/localisation';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

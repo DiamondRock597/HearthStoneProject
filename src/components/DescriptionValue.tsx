@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {icons, Characteristic} from '../icons/menuIcons';
 import {styles} from '../styles/description';
+import {localisation} from '../localisation/localisation';
 
 export enum DescriptionValues {
   Name = 'Name',
@@ -48,7 +50,10 @@ export const DescriptionValue: React.FC<Props> = ({
   <View style={styles.block}>
     <View style={styles.textBlockWithIcon}>
       {imagesMap[valueType]}
-      <Text style={styles.title}>{valueType}:</Text>
+
+      <Text style={styles.title}>
+        {localisation.t(`description.${valueType}`)}:
+      </Text>
       {valueType !== DescriptionValues.Name ? (
         <Text style={styles.answer} numberOfLines={3}>
           {value}

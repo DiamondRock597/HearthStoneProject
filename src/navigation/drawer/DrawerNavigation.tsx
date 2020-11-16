@@ -5,7 +5,7 @@ import {inject, observer} from 'mobx-react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {TypeDrawer} from './Drawer';
+import {TypeDrawer} from './DropDown';
 import {RootScreens, RootStackParamList} from '../screens';
 import {Params} from '../../api/CardAPI';
 import {Stores} from '../../stores/stores';

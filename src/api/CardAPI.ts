@@ -1,5 +1,6 @@
 import {Card as CardDTO} from '../dto/card';
 import {Set as SetDTO} from '../dto/set';
+import {localisation} from '../localisation/localisation';
 import {Card as CardModel} from '../models/card';
 import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
 import {SetModel} from '../models/set';

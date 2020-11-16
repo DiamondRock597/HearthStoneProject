@@ -1,0 +1,9 @@
+{
+    "platform":"Платформ",
+    "desription":{
+        "Name":"Имя",
+        "Manacost":"Стоимость карты",
+        "Attack":"Атака",
+        "Health":"Здоровья"
+    }
+}
