@@ -8,6 +8,8 @@ import {Options} from '../../screens/Options';
 
 import {styles} from '../../styles/dropdown';
 import {Languages, localisation} from '../../localisation/localisation';
+import {inject, observer} from 'mobx-react';
+import {Stores} from '../../stores/stores';
 
 const Drawer = createDrawerNavigator();
 
@@ -20,6 +22,8 @@ const items = [
 
 const paddingOfHeader = 92;
 
+@inject(Stores.Cards, Stores.Sets)
+@observer
 export class DrawerOptions extends React.Component {
   public render() {
     return (

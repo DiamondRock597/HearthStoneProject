@@ -19,6 +19,7 @@ import {StoreOfCards} from '../stores/cards';
 import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {localisation} from '../localisation/localisation';
 
 import {styles} from '../styles/home';
 
@@ -40,7 +41,7 @@ export class Home extends React.Component<Props> {
     return (
       <View style={styles.inputBlock}>
         <TextInput
-          placeholder="Enter card name"
+          placeholder={localisation.t('placeholder')}
           style={styles.homeInput}
           onChangeText={this.handleChangeInput}
           value={this.props.cards.valueInput}

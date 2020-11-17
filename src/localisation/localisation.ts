@@ -1,37 +1,7 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
-
-const en = {
-  description: {
-    Name: 'Name',
-    Manacost: 'Manacost',
-    Attack: 'Attack',
-    Health: 'Health',
-  },
-  http: 'en_US',
-  screens: {
-    Home: 'Home',
-    Addition: 'Addition',
-    Description: 'Description',
-    Options: 'Options',
-  },
-};
-
-const ru = {
-  description: {
-    Name: 'Имя',
-    Manacost: 'Стоимость',
-    Attack: 'Атака',
-    Health: 'Здоровья',
-  },
-  http: 'ru_RU',
-  screens: {
-    Home: 'Главная',
-    Addition: 'Дополнения',
-    Description: 'Описание',
-    Options: 'Настройки',
-  },
-};
+import ru from './ru.json';
+import en from './en.json';
 
 type anyJson = {[key: string]: number | string | anyJson | undefined | null};
 

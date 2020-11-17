@@ -16,6 +16,7 @@ import {Card as CardModel} from '../models/card';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {StoreOfSets} from '../stores/sets';
 import {Stores} from '../stores/stores';
+import {localisation} from '../localisation/localisation';
 
 import {styles} from '../styles/description';
 
@@ -32,7 +33,7 @@ export class CardsOfSets extends React.Component<Props> {
     return (
       <View style={styles.inputBlock}>
         <TextInput
-          placeholder="Enter card name"
+          placeholder={localisation.t('placeholder')}
           style={styles.descriptionInput}
           onChangeText={this.handleChangeInput}
           value={this.props.sets.valueInput}

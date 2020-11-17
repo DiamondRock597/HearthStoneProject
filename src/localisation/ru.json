@@ -1,9 +1,19 @@
 {
-    "platform":"Платформ",
-    "desription":{
-        "Name":"Имя",
-        "Manacost":"Стоимость карты",
-        "Attack":"Атака",
-        "Health":"Здоровья"
-    }
+  "description": {
+    "Name": "Имя",
+    "Manacost": "Стоимость",
+    "Attack": "Атака",
+    "Health": "Здоровья",
+    "Type": "Тип",
+    "ReleaseDate": "Дата выпуска"
+  },
+  "screens": {
+    "Home": "Главная",
+    "Addition": "Дополнения",
+    "Description": "Описание",
+    "Options": "Настройки"
+  },
+  "button": "Карточки в коллекции",
+  "cards_of_sets": "Карточки из",
+  "placeholder": "Введите название карточки"
 }

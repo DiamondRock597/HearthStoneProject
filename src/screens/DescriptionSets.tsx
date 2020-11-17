@@ -15,6 +15,7 @@ import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {SetModel} from '../models/set';
 
 import {styles} from '../styles/descriptionSets';
+import {localisation} from '../localisation/localisation';
 
 const {width}: ScaledSize = Dimensions.get('window');
 
@@ -44,21 +45,27 @@ export class DescriptionSets extends React.Component<Props> {
             <AutoHeightImage width={width} source={{uri: image}} />
           </View>
           <View style={styles.blockTitle}>
-            <Text style={styles.name}>Name: </Text>
+            <Text style={styles.name}>
+              {localisation.t('description.Name')}:{' '}
+            </Text>
             <Text style={styles.title}>{name}</Text>
           </View>
           <View style={styles.blockTitle}>
-            <Text style={styles.name}>Type: </Text>
+            <Text style={styles.name}>
+              {localisation.t('description.Type')}:{' '}
+            </Text>
             <Text style={styles.title}>{type}</Text>
           </View>
           <View style={styles.blockTitle}>
-            <Text style={styles.name}>Release Date: </Text>
+            <Text style={styles.name}>
+              {localisation.t('description.ReleaseDate')}:{' '}
+            </Text>
             <Text style={styles.title}>{releaseDate}</Text>
           </View>
         </View>
         <View style={styles.btn}>
           <Button
-            title="Cards in this Set"
+            title={localisation.t('button')}
             onPress={() =>
               navigation.navigate(RootScreens.CardsOfSets, {
                 id,

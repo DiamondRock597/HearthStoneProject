@@ -110,6 +110,7 @@ export class CardStore implements StoreOfCards {
       this.page = this.page + pageNumber;
     } catch (error) {
       this.error = true;
+      console.log({error});
     } finally {
       this.isLoading = false;
     }

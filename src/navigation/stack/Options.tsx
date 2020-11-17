@@ -8,6 +8,7 @@ import {DrawerActions} from '@react-navigation/native';
 import {RootScreens, RootStackParamList} from '../screens';
 import {MenuButton} from '../../components/MenuButton';
 import {DrawerOptions} from '../drawer/Options';
+import {localisation} from '../../localisation/localisation';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +37,7 @@ export const OptionsScreen = () => (
           />
         ),
       })}
-      name={RootScreens.Options}
+      name={localisation.t(`screens.${RootScreens.Options}`)}
       component={DrawerOptions}
     />
   </Stack.Navigator>

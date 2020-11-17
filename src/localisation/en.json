@@ -1,10 +1,19 @@
 {
-    "platform":"Platform",
-    "desription":{
-        "Name":"Name",
-        "Manacost":"Manacost",
-        "Attack":"Attack",
-        "Health":"Health"
-    }
-
+  "description": {
+    "Name": "Name",
+    "Manacost": "Manacost",
+    "Attack": "Attack",
+    "Health": "Health",
+    "Type": "Type",
+    "ReleaseDate": "Release Date"
+  },
+  "screens": {
+    "Home": "Home",
+    "Addition": "Addition",
+    "Description": "Description",
+    "Options": "Options"
+  },
+  "button": "Card in this set",
+  "cards_of_sets": "Cards of ",
+  "placeholder": "Enter card name"
 }

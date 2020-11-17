@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {RootScreens} from '../screens';
 import {Addition} from '../../screens/Addition';
+import {localisation} from '../../localisation/localisation';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,9 @@ export const AdditionScreen = () => (
       headerStyle: {backgroundColor: '#807c74'},
       headerTintColor: 'white',
     }}>
-    <Stack.Screen name={RootScreens.Addition} component={Addition} />
+    <Stack.Screen
+      name={localisation.t(`screens.${RootScreens.Addition}`)}
+      component={Addition}
+    />
   </Stack.Navigator>
 );

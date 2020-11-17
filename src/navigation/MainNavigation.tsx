@@ -52,7 +52,11 @@ export const MainNavigation = () => (
           route,
         }: {
           route: RouteProp<RootStackParamList, RootScreens.CardsOfSets>;
-        }) => ({headerTitle: `Cards of ${route.params.name}`})}
+        }) => ({
+          headerTitle: `${localisation.t('cards_of_sets')} ${
+            route.params.name
+          }`,
+        })}
       />
     </Stack.Navigator>
   </NavigationContainer>

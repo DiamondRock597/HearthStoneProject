@@ -20,6 +20,7 @@
     "eslint-config-react-native-computools": "^1.0.4",
     "i18next": "^19.8.3",
     "mobx": "^6.0.1",
+    "mobx-persist": "^0.4.1",
     "mobx-react": "^7.0.0",
     "react": "16.13.1",
     "react-i18next": "^11.7.3",
