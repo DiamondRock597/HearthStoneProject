@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {localisation} from '../../localisation/localisation';
 
 import {Classes, MinionType, Rarity, Types} from '../../models/card_filters';
 import {styles} from '../../styles/dropdown';
@@ -64,7 +65,7 @@ export const TypeDrawer: React.FC<Props> = ({
 }: Props) => (
   <View style={{height}}>
     <DropDownPicker
-      placeholder="Select class"
+      placeholder={localisation.t('dropDownText.class')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={classes}
@@ -74,7 +75,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder="Select type"
+      placeholder={localisation.t('dropDownText.type')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={types}
@@ -84,7 +85,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder="Select rarity"
+      placeholder={localisation.t('dropDownText.rarity')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={rarity}
@@ -94,7 +95,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder="Select Minion Type"
+      placeholder={localisation.t('dropDownText.minionType')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={minionType}

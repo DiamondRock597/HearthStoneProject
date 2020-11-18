@@ -5,7 +5,7 @@ import {Provider} from 'mobx-react';
 import {MainNavigation} from './src/navigation/MainNavigation';
 import {
   createRootStore,
-  RootStore,
+  MainStore,
   Stores,
   StoresMethods,
 } from './src/stores/stores';
@@ -20,7 +20,7 @@ export class App extends React.Component<null, State> {
     hydrated: false,
   };
 
-  private rootStore: RootStore = createRootStore();
+  private rootStore: MainStore = createRootStore();
 
   public async componentDidMount() {
     await this.rootStore[StoresMethods.LoadStores]();

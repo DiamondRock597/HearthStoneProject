@@ -51,7 +51,7 @@ export class Home extends React.Component<Props, State> {
     return (
       <View style={styles.inputBlock}>
         <TextInput
-          placeholder={localisation.t('placeholder')}
+          placeholder={localisation.t('textForInput')}
           style={styles.homeInput}
           onChangeText={this.handleChangeInput}
           value={this.props.cards.valueInput}

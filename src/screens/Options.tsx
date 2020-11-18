@@ -49,7 +49,7 @@ export class Options extends React.Component<Props> {
     value: Languages;
   }) => {
     this.props.user.setLocale(value);
-    //this.props.cards.cleanCards();
+    this.props.cards.cleanCards();
     localisation.selectLanguage(value);
   };
 }

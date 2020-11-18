@@ -17,7 +17,9 @@ export interface Localisation {
 }
 
 export interface LangOptions {
+  language: Languages;
   fallbackLng: Languages;
+
   resources: {[key in Languages]: {translation: anyJson}};
 }
 

@@ -1,6 +1,5 @@
 import {action, computed, makeObservable, observable} from 'mobx';
 import {persist} from 'mobx-persist';
-import {act} from 'react-test-renderer';
 
 import {HeartStoneAPI} from '../api/CardAPI';
 import {Languages} from '../localisation/localisation';
@@ -43,6 +42,5 @@ export class UserStore implements StoreOfUser {
 
   private setupParams: () => void = () => {
     this.cardsAPI.setupLocale(this.locale);
-    //Нельзя на прямою обращатся к http
   };
 }

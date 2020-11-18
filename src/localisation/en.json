@@ -15,8 +15,14 @@
   },
   "button": "Card in this set",
   "cards_of_sets": "Cards of ",
-  "placeholder": "Enter card name",
+  "textForInput": "Enter card name",
   "cardsEmpty": {
     "NoCards": "There is no such card"
+  },
+  "dropDownText": {
+    "type": "Select type",
+    "rarity": "Select rarity",
+    "minionType": "Select minion type",
+    "class": "Select class"
   }
 }

@@ -7,10 +7,12 @@ import {AdditionScreen as AdditionStack} from '../stack/Addition';
 import {TabBarIcon} from './TabBarIcon';
 import {OptionsScreen as OptionsStack} from '../stack/Options';
 import {localisation} from '../../localisation/localisation';
+import {inject, observer} from 'mobx-react';
+import {Stores} from '../../stores/stores';
 
 const Tab = createBottomTabNavigator();
 
-export const TabNavigation = () => (
+const TabNavigator = (props) => (
   <Tab.Navigator
     tabBarOptions={{
       labelPosition: 'beside-icon',
@@ -23,17 +25,18 @@ export const TabNavigation = () => (
       name={localisation.t(`screens.${RootScreens.Home}`)}
       component={HomeStack}
       options={{
-        tabBarIcon: (props) => (
-          <TabBarIcon iconsType={RootScreens.Home} color={props.color} />
+        tabBarIcon: ({color}) => (
+          <TabBarIcon iconsType={RootScreens.Home} color={color} />
         ),
       }}
     />
+    {console.log(props.user.selectedLocale)}
     <Tab.Screen
       name={localisation.t(`screens.${RootScreens.Addition}`)}
       component={AdditionStack}
       options={{
-        tabBarIcon: (props) => (
-          <TabBarIcon iconsType={RootScreens.Addition} color={props.color} />
+        tabBarIcon: ({color}) => (
+          <TabBarIcon iconsType={RootScreens.Addition} color={color} />
         ),
       }}
     />
@@ -41,10 +44,12 @@ export const TabNavigation = () => (
       name={localisation.t(`screens.${RootScreens.Options}`)}
       component={OptionsStack}
       options={{
-        tabBarIcon: (props) => (
-          <TabBarIcon iconsType={RootScreens.Options} color={props.color} />
+        tabBarIcon: ({color}) => (
+          <TabBarIcon iconsType={RootScreens.Options} color={color} />
         ),
       }}
     />
   </Tab.Navigator>
 );
+
+export const TabNavigation = inject(Stores.User)(observer(TabNavigator));

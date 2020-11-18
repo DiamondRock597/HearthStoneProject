@@ -20,7 +20,16 @@ export enum StoresMethods {
 
 type PersistStores = Stores.User;
 
-export class RootStore {
+export interface MainStore {
+  [Stores.User]: StoreOfUser;
+  [Stores.Sets]: StoreOfSets;
+  [Stores.User]: StoreOfUser;
+
+  [StoresMethods.LoadStores]: () => Promise<void>;
+  [StoresMethods.CleanStore]: () => void;
+}
+
+export class RootStore implements MainStore {
   public static readonly persistedStores: Array<PersistStores> = [Stores.User];
   public [Stores.Cards]: StoreOfCards;
   public [Stores.Sets]: StoreOfSets;
@@ -49,7 +58,7 @@ export class RootStore {
 
 export const createRootStore = (): RootStore => {
   const defaultParams = {
-    access_token: 'US2MhU1048oqAV5H57dmn8U5cPOiiTTAdB',
+    access_token: 'USTSjONB33TR67fwXLxYxMgX0uvSu5hc9K',
   };
 
   const http = new Http('https://us.api.blizzard.com/hearthstone/', {
