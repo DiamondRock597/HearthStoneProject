@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack';
-import {DrawerActions} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {RootScreens, RootStackParamList} from '../screens';
-import {MenuButton} from '../../components/MenuButton';
-import {DrawerOptions} from '../drawer/Options';
+import {RootScreens} from '../screens';
+import {Options} from '../../screens/Options';
 import {localisation} from '../../localisation/localisation';
 
 const Stack = createStackNavigator();
@@ -21,24 +16,8 @@ export const OptionsScreen = () => (
       headerTintColor: 'white',
     }}>
     <Stack.Screen
-      options={({
-        navigation,
-      }: {
-        navigation: StackNavigationProp<
-          RootStackParamList,
-          RootScreens.Options
-        >;
-      }) => ({
-        headerLeft: () => (
-          <MenuButton
-            handleOpen={() => {
-              navigation.dispatch(DrawerActions.toggleDrawer());
-            }}
-          />
-        ),
-      })}
       name={localisation.t(`screens.${RootScreens.Options}`)}
-      component={DrawerOptions}
+      component={Options}
     />
   </Stack.Navigator>
 );

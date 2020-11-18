@@ -3,16 +3,36 @@ import React from 'react';
 import {Provider} from 'mobx-react';
 
 import {MainNavigation} from './src/navigation/MainNavigation';
-import {createRootStore, RootStore} from './src/stores/stores';
+import {
+  createRootStore,
+  RootStore,
+  Stores,
+  StoresMethods,
+} from './src/stores/stores';
+import {localisation} from './src/localisation/localisation';
 
-export class App extends React.Component {
+interface State {
+  hydrated: boolean;
+}
+
+export class App extends React.Component<null, State> {
+  public state: State = {
+    hydrated: false,
+  };
+
   private rootStore: RootStore = createRootStore();
 
+  public async componentDidMount() {
+    await this.rootStore[StoresMethods.LoadStores]();
+    localisation.selectLanguage(this.rootStore[Stores.User].selectedLocale);
+    this.setState({hydrated: true});
+  }
+
   public render() {
-    return (
+    return this.state.hydrated ? (
       <Provider {...this.rootStore}>
         <MainNavigation />
       </Provider>
-    );
+    ) : null;
   }
 }

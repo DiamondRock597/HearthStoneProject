@@ -14,6 +14,8 @@ export interface StoreOfSets {
   fetchCards: (id: number) => void;
   cleanCards: () => void;
   setSearchValue: (text: string) => void;
+
+  dispose: () => void;
 }
 
 const pageNumber: number = 1;
@@ -40,9 +42,18 @@ export class SetsStore implements StoreOfSets {
   @action.bound public getSets: () => void = async () => {
     this.sets = await this.SetsHTTP.getSets();
   };
+
   @action.bound public cleanCards: () => void = () => {
     this.collectionCards = [];
     this.page = pageNumber;
+  };
+
+  @action.bound public dispose: () => void = () => {
+    this.cleanCards();
+    this.error = false;
+    this.isLoading = false;
+    this.sets = [];
+    this.valueInput = '';
   };
 
   @action.bound public setSearchValue: (text: string) => void = (text) => {

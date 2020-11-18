@@ -1,6 +1,6 @@
 import axios, {AxiosInstance} from 'axios';
 
-interface Params {
+export interface Params {
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -11,6 +11,7 @@ export interface RequestConfig {
 export interface HttpAPI {
   get: <T>(url: string, options?: RequestConfig) => Promise<T>;
   addParams: (params: Params) => void;
+  cleanAPI: () => void;
 }
 
 export class Http implements HttpAPI {
@@ -26,20 +27,23 @@ export class Http implements HttpAPI {
   }
 
   public async get<T>(url: string, config?: RequestConfig) {
-    console.log({params: this.params});
-
     const res = await this.axiosInstance.get<T>(url, config);
-    console.log({res});
 
     return res.data;
   }
 
-  public addParams = (params: Params) => {
+  public addParams: (params: Params) => void = (params) => {
     this.params = {...this.params, ...params};
+
     this.setAxiosInstance();
   };
 
-  private setAxiosInstance = () => {
+  public cleanAPI: () => void = () => {
+    this.baseURL = '';
+    this.params = {};
+  };
+
+  private setAxiosInstance: () => void = () => {
     this.axiosInstance = axios.create({
       baseURL: this.baseURL,
       params: this.params,

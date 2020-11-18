@@ -7,6 +7,7 @@ import {
   ListRenderItemInfo,
   Dimensions,
   ScaledSize,
+  RefreshControl,
 } from 'react-native';
 import {observer, inject} from 'mobx-react';
 import {FlatGrid} from 'react-native-super-grid';
@@ -24,9 +25,10 @@ import {localisation} from '../localisation/localisation';
 import {styles} from '../styles/home';
 
 const {width}: ScaledSize = Dimensions.get('window');
-const paddingBetweenItems = 27;
+const distanceBetweenItems = 32;
 const countItemsInRow = 2;
 const sizeIcons = 50;
+const sideArountItem = 4;
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
@@ -34,9 +36,17 @@ interface Props {
   cards: StoreOfCards;
 }
 
+interface State {
+  refreshing: boolean;
+}
+
 @inject(Stores.Cards)
 @observer
-export class Home extends React.Component<Props> {
+export class Home extends React.Component<Props, State> {
+  public state: State = {
+    refreshing: false,
+  };
+
   private get cardsHeaderComponent() {
     return (
       <View style={styles.inputBlock}>
@@ -50,6 +60,18 @@ export class Home extends React.Component<Props> {
     );
   }
 
+  private get refreshControl() {
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={() => {
+          this.props.cards.cleanCards();
+          this.props.cards.fetchCards();
+        }}
+      />
+    );
+  }
+
   private get cardsEmptyComponent() {
     if (this.props.cards.isLoading) {
       return <ActivityIndicator color="black" size={sizeIcons} />;
@@ -57,7 +79,7 @@ export class Home extends React.Component<Props> {
       return <Icon size={sizeIcons} color="red" name="error" />;
     }
 
-    return <Text>There is no such card</Text>;
+    return <Text>{localisation.t('cardsEmpty.NoCards')}</Text>;
   }
 
   public componentDidMount() {
@@ -74,9 +96,10 @@ export class Home extends React.Component<Props> {
           ListHeaderComponent={this.cardsHeaderComponent}
           data={this.props.cards.cardsList}
           renderItem={this.renderItem}
-          itemDimension={(width - paddingBetweenItems) / countItemsInRow}
+          itemDimension={(width - distanceBetweenItems) / countItemsInRow}
           keyExtractor={this.keyExtractor}
-          spacing={8}
+          spacing={distanceBetweenItems / sideArountItem}
+          refreshControl={this.refreshControl}
         />
       </View>
     );

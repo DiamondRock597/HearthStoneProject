@@ -1,10 +1,10 @@
 import {Card as CardDTO} from '../dto/card';
 import {Set as SetDTO} from '../dto/set';
-import {localisation} from '../localisation/localisation';
+
 import {Card as CardModel} from '../models/card';
 import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
 import {SetModel} from '../models/set';
-import {HttpAPI} from './http_api';
+import {HttpAPI, Params as ParamsHTTP} from './http_api';
 
 export interface Params {
   classType?: Classes;
@@ -27,6 +27,10 @@ export interface HeartStoneAPI {
     page: number,
     textFilter?: string,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
+
+  addParams: (params: ParamsHTTP) => void;
+
+  cleanCardAPI: () => void;
 }
 
 export class CardsAPI implements HeartStoneAPI {
@@ -94,5 +98,13 @@ export class CardsAPI implements HeartStoneAPI {
     const cards = await res.cards.map((item: CardDTO) => CardModel.Parse(item));
     const {pageCount}: {pageCount: number} = await res;
     return {cards, pageCount};
+  };
+
+  public addParams: (params: ParamsHTTP) => void = (params) => {
+    this.http.addParams(params);
+  };
+
+  public cleanCardAPI: () => void = () => {
+    this.http.cleanAPI();
   };
 }

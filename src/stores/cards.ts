@@ -21,7 +21,11 @@ export interface StoreOfCards {
   setMinionType: (minionType: MinionType) => void;
   setRarity: (rarity: Rarity) => void;
 
+  dispose: () => void;
+
   fetchCards: () => void;
+
+  onLoad: () => void;
 }
 
 export class CardStore implements StoreOfCards {
@@ -50,6 +54,18 @@ export class CardStore implements StoreOfCards {
   @action.bound public cleanCards: () => void = () => {
     this.cards = [];
     this.page = 1;
+  };
+
+  @action.bound public dispose: () => void = () => {
+    this.cleanCards();
+    this.error = false;
+    this.isLoading = false;
+    this.valueInput = '';
+
+    this.rarity = Rarity.default;
+    this.minionType = MinionType.default;
+    this.type = Types.default;
+    this.classType = Classes.default;
   };
 
   @action.bound
@@ -110,9 +126,12 @@ export class CardStore implements StoreOfCards {
       this.page = this.page + pageNumber;
     } catch (error) {
       this.error = true;
-      console.log({error});
     } finally {
       this.isLoading = false;
     }
+  };
+
+  @action.bound public onLoad: () => void = () => {
+    this.fetchCards();
   };
 }
