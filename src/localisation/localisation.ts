@@ -6,8 +6,8 @@ import en from './en.json';
 type anyJson = {[key: string]: number | string | anyJson | undefined | null};
 
 export enum Languages {
-  EN = 'en_US',
-  RU = 'ru_RU',
+  EN = 'en',
+  RU = 'ru',
 }
 
 export interface Localisation {

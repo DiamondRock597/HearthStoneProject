@@ -1,10 +1,15 @@
 import {Card as CardDTO} from '../dto/card';
 import {Set as SetDTO} from '../dto/set';
-
+import {Languages} from '../localisation/localisation';
 import {Card as CardModel} from '../models/card';
 import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
 import {SetModel} from '../models/set';
-import {HttpAPI, Params as ParamsHTTP} from './http_api';
+import {HttpAPI} from './http_api';
+
+const mapLanguages = {
+  [Languages.EN]: 'en_US',
+  [Languages.RU]: 'ru_RU',
+};
 
 export interface Params {
   classType?: Classes;
@@ -28,7 +33,7 @@ export interface HeartStoneAPI {
     textFilter?: string,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
 
-  addParams: (params: ParamsHTTP) => void;
+  setupLocale: (locale: Languages) => void;
 
   cleanCardAPI: () => void;
 }
@@ -100,8 +105,8 @@ export class CardsAPI implements HeartStoneAPI {
     return {cards, pageCount};
   };
 
-  public addParams: (params: ParamsHTTP) => void = (params) => {
-    this.http.addParams(params);
+  public setupLocale: (locale: Languages) => void = (locale) => {
+    this.http.addParams({locale: mapLanguages[locale]});
   };
 
   public cleanCardAPI: () => void = () => {

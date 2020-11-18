@@ -1,29 +1,30 @@
 import {action, computed, makeObservable, observable} from 'mobx';
 import {persist} from 'mobx-persist';
+import {act} from 'react-test-renderer';
+
 import {HeartStoneAPI} from '../api/CardAPI';
 import {Languages} from '../localisation/localisation';
+import {BaseStore} from './base_store';
+import {PersistStore} from './persist_store';
 
-export interface StoreOfUser {
+export interface StoreOfUser extends PersistStore, BaseStore {
   selectedLocale: Languages;
 
-  onLoad: () => void;
-
   setLocale: (locale: Languages) => void;
-  dispose: () => void;
 }
 
 export class UserStore implements StoreOfUser {
   @persist @observable public locale: Languages = Languages.EN;
 
-  private http: HeartStoneAPI;
+  private cardsAPI: HeartStoneAPI;
 
   @computed public get selectedLocale() {
     return this.locale;
   }
 
-  public constructor(http: HeartStoneAPI) {
+  public constructor(cardsAPI: HeartStoneAPI) {
     makeObservable(this);
-    this.http = http;
+    this.cardsAPI = cardsAPI;
   }
 
   @action.bound
@@ -35,13 +36,13 @@ export class UserStore implements StoreOfUser {
     this.setupParams();
   };
 
-  @action.bound public dispose = () => {
-    this.locale = '';
-    //this.http.cleanCardAPI();
+  @action.bound
+  public dispose: () => void = () => {
+    this.locale = Languages.EN;
   };
 
   private setupParams: () => void = () => {
+    this.cardsAPI.setupLocale(this.locale);
     //Нельзя на прямою обращатся к http
-    this.http.addParams({locale: this.locale});
   };
 }

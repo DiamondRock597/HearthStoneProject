@@ -1,10 +1,11 @@
 import {observable, makeObservable, action, computed, toJS} from 'mobx';
 
+import {BaseStore} from './base_store';
 import {HeartStoneAPI} from '../api/CardAPI';
 import {SetModel} from '../models/set';
 import {Card as CardModel} from '../models/card';
 
-export interface StoreOfSets {
+export interface StoreOfSets extends BaseStore {
   cardsList: Array<CardModel>;
   isLoading: boolean;
   error: boolean;

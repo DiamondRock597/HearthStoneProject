@@ -4,10 +4,11 @@ import {HeartStoneAPI} from '../api/CardAPI';
 
 import {Card as CardModel} from '../models/card';
 import {Classes, Types, Rarity, MinionType} from '../models/card_filters';
+import {BaseStore} from './base_store';
 
 const pageNumber: number = 1;
 
-export interface StoreOfCards {
+export interface StoreOfCards extends BaseStore {
   cardsList: Array<CardModel>;
   valueInput: string;
   error: boolean;
@@ -24,8 +25,6 @@ export interface StoreOfCards {
   dispose: () => void;
 
   fetchCards: () => void;
-
-  onLoad: () => void;
 }
 
 export class CardStore implements StoreOfCards {
@@ -129,9 +128,5 @@ export class CardStore implements StoreOfCards {
     } finally {
       this.isLoading = false;
     }
-  };
-
-  @action.bound public onLoad: () => void = () => {
-    this.fetchCards();
   };
 }

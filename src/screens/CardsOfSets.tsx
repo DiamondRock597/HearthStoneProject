@@ -10,6 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Card} from '../components/Card';
 import {Card as CardModel} from '../models/card';
@@ -19,6 +20,8 @@ import {Stores} from '../stores/stores';
 import {localisation} from '../localisation/localisation';
 
 import {styles} from '../styles/description';
+
+const sizeIcons = 50;
 
 interface Props {
   sets: StoreOfSets;
@@ -46,10 +49,10 @@ export class CardsOfSets extends React.Component<Props> {
     if (this.props.sets.isLoading) {
       return <ActivityIndicator color="black" size={50} />;
     } else if (this.props.sets.error) {
-      return <Text>ERROR</Text>;
+      return <Icon size={sizeIcons} color="red" name="error" />;
     }
 
-    return <Text>There is no such card</Text>;
+    return <Text>{localisation.t('cardsEmpty.NoCards')}</Text>;
   }
 
   public componentDidMount() {
