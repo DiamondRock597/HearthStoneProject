@@ -7,22 +7,35 @@
     "Type": "Тип",
     "ReleaseDate": "Дата выпуска"
   },
-  "screens": {
+  "header_screens": {
     "Home": "Главная",
     "Addition": "Дополнения",
     "Description": "Описание",
     "Options": "Настройки"
   },
-  "button": "Карточки в коллекции",
-  "cards_of_sets": "Карточки из",
-  "textForInput": "Введите название карточки",
-  "cardsEmpty": {
+  "button_cards_of_set": "Карточки в коллекции",
+  "text_for_input": "Введите название карточки",
+  "cards_empty": {
     "NoCards": "Таких карт нет"
   },
-  "dropDownText": {
-    "type": "Выберете тип",
-    "rarity": "Выберети редкость",
-    "minionType": "Выберети тип миньона",
-    "class": "Выберети класс"
+  "drop_down_text": {
+    "selectType": "Выберете тип",
+    "selectRarity": "Выберети редкость",
+    "selectMinionType": "Выберети тип миньона",
+    "selectClass": "Выберети класс"
+  },
+
+  "classes_for_drop_down": {
+    "warrior": "Воин",
+    "priest": "Жрец",
+    "rogue": "Разбойник",
+    "druid": "Друид",
+    "shaman": "Шаман",
+    "mage": "Маг",
+    "demonhunter": "Охотник на демонов",
+    "hunter": "Охотник",
+    "paladin": "Паладин",
+    "warlock": "Чернокнижник",
+    "": "Все"
   }
 }

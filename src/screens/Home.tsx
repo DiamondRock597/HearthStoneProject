@@ -51,7 +51,7 @@ export class Home extends React.Component<Props, State> {
     return (
       <View style={styles.inputBlock}>
         <TextInput
-          placeholder={localisation.t('textForInput')}
+          placeholder={localisation.t('text_for_input')}
           style={styles.homeInput}
           onChangeText={this.handleChangeInput}
           value={this.props.cards.valueInput}
@@ -79,7 +79,7 @@ export class Home extends React.Component<Props, State> {
       return <Icon size={sizeIcons} color="red" name="error" />;
     }
 
-    return <Text>{localisation.t('cardsEmpty.NoCards')}</Text>;
+    return <Text>{localisation.t('cards_empty.NoCards')}</Text>;
   }
 
   public componentDidMount() {

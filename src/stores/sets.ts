@@ -4,6 +4,7 @@ import {BaseStore} from './base_store';
 import {HeartStoneAPI} from '../api/CardAPI';
 import {SetModel} from '../models/set';
 import {Card as CardModel} from '../models/card';
+import {act} from 'react-test-renderer';
 
 export interface StoreOfSets extends BaseStore {
   cardsList: Array<CardModel>;
@@ -59,6 +60,11 @@ export class SetsStore implements StoreOfSets {
 
   @action.bound public setSearchValue: (text: string) => void = (text) => {
     this.valueInput = text;
+  };
+
+  @action.bound public cleanSets: () => void = () => {
+    this.sets = [];
+    this.cleanCards();
   };
 
   @action.bound public fetchCards: (id: number) => void = async (id) => {

@@ -65,7 +65,7 @@ export class DescriptionSets extends React.Component<Props> {
         </View>
         <View style={styles.btn}>
           <Button
-            title={localisation.t('button')}
+            title={localisation.t('button_cards_of_set')}
             onPress={() =>
               navigation.navigate(RootScreens.CardsOfSets, {
                 id,

@@ -9,6 +9,7 @@ export enum RootScreens {
   CardsOfSets = 'Cards Of Sets',
   Options = 'Options',
 }
+
 export type RootStackParamList = {
   [RootScreens.Home]: undefined;
   [RootScreens.Addition]: undefined;

@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/stack';
 
 import {RootScreens, RootStackParamList} from './screens';
-import {TabNavigation} from './tab/Tab';
+import {TabNavigation} from './tab/TabNavigation';
 import {Description} from '../screens/Description';
 import {DescriptionSets} from '../screens/DescriptionSets';
 import {CardsOfSets} from '../screens/CardsOfSets';
@@ -37,7 +37,18 @@ export const MainNavigation = () => (
         component={TabNavigation}
         options={{headerShown: false}}
       />
-      <Stack.Screen name={RootScreens.Description} component={Description} />
+      <Stack.Screen
+        name={RootScreens.Description}
+        component={Description}
+        options={({
+          route,
+        }: {
+          route: RouteProp<RootStackParamList, RootScreens.Description>;
+        }) => ({
+          headerTitle: localisation.t(`header_screens.${route.name}`),
+        })}
+      />
+
       <Stack.Screen
         name={RootScreens.DescriptionSets}
         component={DescriptionSets}
@@ -53,9 +64,7 @@ export const MainNavigation = () => (
         }: {
           route: RouteProp<RootStackParamList, RootScreens.CardsOfSets>;
         }) => ({
-          headerTitle: `${localisation.t('cards_of_sets')} ${
-            route.params.name
-          }`,
+          headerTitle: route.params.name,
         })}
       />
     </Stack.Navigator>

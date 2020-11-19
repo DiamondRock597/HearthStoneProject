@@ -7,22 +7,34 @@
     "Type": "Type",
     "ReleaseDate": "Release Date"
   },
-  "screens": {
+  "header_screens": {
     "Home": "Home",
     "Addition": "Addition",
     "Description": "Description",
     "Options": "Options"
   },
-  "button": "Card in this set",
-  "cards_of_sets": "Cards of ",
-  "textForInput": "Enter card name",
-  "cardsEmpty": {
+  "button_cards_of_set": "Card in this set",
+  "text_for_input": "Enter card name",
+  "cards_empty": {
     "NoCards": "There is no such card"
   },
-  "dropDownText": {
-    "type": "Select type",
-    "rarity": "Select rarity",
-    "minionType": "Select minion type",
-    "class": "Select class"
+  "drop_down_text": {
+    "selectType": "Select type",
+    "selectRarity": "Select rarity",
+    "selectMinionType": "Select minion type",
+    "selectClass": "Select class"
+  },
+  "classes_for_drop_down": {
+    "warrior": "Warrior",
+    "priest": "Priest",
+    "rogue": "Rogue",
+    "druid": "Druid",
+    "shaman": "Shaman",
+    "mage": "Mage",
+    "demonhunter": "Demon Hunter",
+    "hunter": "Hunter",
+    "paladin": "Paladin",
+    "warlock": "Warlock",
+    "": "ALL"
   }
 }

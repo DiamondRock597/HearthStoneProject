@@ -16,7 +16,7 @@ export const OptionsScreen = () => (
       headerTintColor: 'white',
     }}>
     <Stack.Screen
-      name={localisation.t(`screens.${RootScreens.Options}`)}
+      name={localisation.t(`header_screens.${RootScreens.Options}`)}
       component={Options}
     />
   </Stack.Navigator>

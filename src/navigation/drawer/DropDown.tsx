@@ -7,17 +7,50 @@ import {Classes, MinionType, Rarity, Types} from '../../models/card_filters';
 import {styles} from '../../styles/dropdown';
 
 const classes = [
-  {label: 'Warrior', value: Classes.Warrior},
-  {label: 'Priest', value: Classes.Priest},
-  {label: 'Mage', value: Classes.Mage},
-  {label: 'Rogue', value: Classes.Rogue},
-  {label: 'Druid', value: Classes.Druid},
-  {label: 'Shaman', value: Classes.Shaman},
-  {label: 'Demon Hunter', value: Classes.DemonHunter},
-  {label: 'Paladin', value: Classes.Paladin},
-  {label: 'Hunter', value: Classes.Hunter},
-  {label: 'Warlock', value: Classes.Warlock},
-  {label: 'All', value: Classes.default},
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Warrior}`),
+    value: Classes.Warrior,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Priest}`),
+    value: Classes.Priest,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Mage}`),
+    value: Classes.Mage,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Rogue}`),
+    value: Classes.Rogue,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Druid}`),
+    value: Classes.Druid,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Shaman}`),
+    value: Classes.Shaman,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.DemonHunter}`),
+    value: Classes.DemonHunter,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Paladin}`),
+    value: Classes.Paladin,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Hunter}`),
+    value: Classes.Hunter,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.Warlock}`),
+    value: Classes.Warlock,
+  },
+  {
+    label: localisation.t(`classes_for_drop_down.${Classes.default}`),
+    value: Classes.default,
+  },
 ];
 
 const types = [
@@ -25,7 +58,7 @@ const types = [
   {label: 'Spell', value: Types.Spell},
   {label: 'Hero', value: Types.Hero},
   {label: 'Weapon', value: Types.Weapon},
-  {label: 'All', value: Rarity.default},
+  {label: 'All', value: Types.default},
 ];
 
 const rarity = [
@@ -65,7 +98,7 @@ export const TypeDrawer: React.FC<Props> = ({
 }: Props) => (
   <View style={{height}}>
     <DropDownPicker
-      placeholder={localisation.t('dropDownText.class')}
+      placeholder={localisation.t('drop_down_text.selectClass')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={classes}
@@ -75,7 +108,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder={localisation.t('dropDownText.type')}
+      placeholder={localisation.t('drop_down_text.selectType')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={types}
@@ -85,7 +118,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder={localisation.t('dropDownText.rarity')}
+      placeholder={localisation.t('drop_down_text.selectRarity')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={rarity}
@@ -95,7 +128,7 @@ export const TypeDrawer: React.FC<Props> = ({
     />
 
     <DropDownPicker
-      placeholder={localisation.t('dropDownText.minionType')}
+      placeholder={localisation.t('drop_down_text.selectMinionType')}
       dropDownMaxHeight={height}
       style={styles.block}
       items={minionType}

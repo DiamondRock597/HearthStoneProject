@@ -1,6 +1,12 @@
 import {inject, observer} from 'mobx-react';
 import React from 'react';
-import {ListRenderItemInfo, View} from 'react-native';
+import {
+  Dimensions,
+  ListRenderItemInfo,
+  RefreshControl,
+  ScaledSize,
+  View,
+} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {RootScreens, RootStackParamList} from '../navigation/screens';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -12,16 +18,39 @@ import {SetModel} from '../models/set';
 
 import {styles} from '../styles/addition';
 
+const {width}: ScaledSize = Dimensions.get('screen');
+const paddingForImage = 10;
+
 interface Props {
   sets: SetsStore;
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Addition>;
 }
 
+interface State {
+  refreshing: boolean;
+}
+
 @inject(Stores.Sets)
 @observer
-export class Addition extends React.Component<Props> {
+export class Addition extends React.Component<Props, State> {
+  public state: State = {
+    refreshing: false,
+  };
+
   public componentDidMount() {
     this.props.sets.getSets();
+  }
+
+  private get refreshControl() {
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={() => {
+          this.props.sets.cleanSets();
+          this.props.sets.getSets();
+        }}
+      />
+    );
   }
 
   public render() {
@@ -30,9 +59,10 @@ export class Addition extends React.Component<Props> {
         <FlatGrid
           data={this.props.sets.sets}
           renderItem={this.renderItem}
-          itemDimension={400}
+          itemDimension={width - paddingForImage}
           spacing={10}
           keyExtractor={this.keyExtractor}
+          refreshControl={this.refreshControl}
         />
       </View>
     );

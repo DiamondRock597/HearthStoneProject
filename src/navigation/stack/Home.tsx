@@ -34,7 +34,7 @@ export const HomeScreen = () => (
           />
         ),
       })}
-      name={localisation.t(`screens.${RootScreens.Home}`)}
+      name={localisation.t(`header_screens.${RootScreens.Home}`)}
       component={DrawerNavigation}
     />
   </Stack.Navigator>

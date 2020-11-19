@@ -2,12 +2,14 @@ import React from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Dimensions, ScaledSize, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 import {styles} from '../styles/dropdown';
 import {Languages, localisation} from '../localisation/localisation';
 import {Stores} from '../stores/stores';
 import {StoreOfUser} from '../stores/user';
 import {StoreOfCards} from '../stores/cards';
+import {RootScreens, RootStackParamList} from '../navigation/screens';
 
 const {height}: ScaledSize = Dimensions.get('window');
 
@@ -19,6 +21,7 @@ const items = [
 interface Props {
   user: StoreOfUser;
   cards: StoreOfCards;
+  navigation: StackNavigationProp<RootStackParamList, RootScreens.Options>;
 }
 
 @inject(Stores.User, Stores.Cards)
@@ -30,7 +33,7 @@ export class Options extends React.Component<Props> {
 
   public render() {
     return (
-      <View style={{height}}>
+      <View style={{...styles.container, height}}>
         <DropDownPicker
           style={styles.block}
           containerStyle={styles.containerStyle}

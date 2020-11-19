@@ -1,7 +1,14 @@
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  ScaledSize,
+  Dimensions,
+} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import HTMLView from 'react-native-htmlview';
 
@@ -13,6 +20,9 @@ import {
 } from '../components/DescriptionValue';
 
 import {styles} from '../styles/description';
+
+const {width}: ScaledSize = Dimensions.get('screen');
+const countOfBlock = 1.85;
 
 interface Props {
   navigation: StackNavigationProp<RootStackParamList, RootScreens.Description>;
@@ -29,7 +39,7 @@ export const Description: React.FC<Props> = ({route}: Props) => {
         <View style={styles.imageBlock}>
           <View style={styles.image}>
             <AutoHeightImage
-              width={225}
+              width={width / countOfBlock}
               source={{
                 uri: card.img,
               }}

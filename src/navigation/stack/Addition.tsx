@@ -16,7 +16,7 @@ export const AdditionScreen = () => (
       headerTintColor: 'white',
     }}>
     <Stack.Screen
-      name={localisation.t(`screens.${RootScreens.Addition}`)}
+      name={localisation.t(`header_screens.${RootScreens.Addition}`)}
       component={Addition}
     />
   </Stack.Navigator>
