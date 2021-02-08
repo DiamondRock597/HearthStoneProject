@@ -105,8 +105,7 @@ export class Home extends React.Component<Props, State> {
     );
   }
 
-  private keyExtractor: (item: CardModel) => string = (item) =>
-    `Card - ${item.id}`;
+  private keyExtractor = (item: CardModel) => `Card - ${item.id}`;
 
   private handleChangeInput: (text: string) => void = (text) => {
     this.props.cards.setSearchValue(text);

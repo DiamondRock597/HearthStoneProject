@@ -26,6 +26,7 @@ export const HomeScreen = () => (
       }: {
         navigation: StackNavigationProp<RootStackParamList, RootScreens.Home>;
       }) => ({
+        title: localisation.t(`header_screens.${RootScreens.Home}`),
         headerLeft: () => (
           <MenuButton
             handleOpen={() => {
@@ -34,7 +35,7 @@ export const HomeScreen = () => (
           />
         ),
       })}
-      name={localisation.t(`header_screens.${RootScreens.Home}`)}
+      name={RootScreens.Home}
       component={DrawerNavigation}
     />
   </Stack.Navigator>

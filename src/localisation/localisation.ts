@@ -34,8 +34,9 @@ export class NextLocalisation implements Localisation {
     i18n.use(initReactI18next).init(options);
   }
 
-  public t = (key: string, options?: {[key: string]: string | number}) =>
-    i18n.t(key, options);
+  public t = (key: string, options?: {[key: string]: string | number}) => {
+    return i18n.t(key, options);
+  };
 
   public selectLanguage: (langKey: Languages) => void = (langKey) => {
     this.currentLanguage = langKey;

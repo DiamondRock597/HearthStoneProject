@@ -54,5 +54,6 @@ export class Options extends React.Component<Props> {
     this.props.user.setLocale(value);
     this.props.cards.cleanCards();
     localisation.selectLanguage(value);
+    this.props.navigation.navigate(RootScreens.Options);
   };
 }

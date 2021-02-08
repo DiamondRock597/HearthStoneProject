@@ -20,9 +20,10 @@ export const TabNavigation = () => (
       tabStyle: {backgroundColor: '#4d4c3f'},
     }}>
     <Tab.Screen
-      name={localisation.t(`header_screens.${RootScreens.Home}`)}
+      name={RootScreens.Home}
       component={HomeStack}
       options={{
+        tabBarLabel: localisation.t(`header_screens.${RootScreens.Home}`),
         tabBarIcon: ({color}: {color: string}) => (
           <TabBarIcon iconsType={RootScreens.Home} color={color} />
         ),
@@ -30,18 +31,20 @@ export const TabNavigation = () => (
     />
 
     <Tab.Screen
-      name={localisation.t(`header_screens.${RootScreens.Addition}`)}
+      name={RootScreens.Addition}
       component={AdditionStack}
       options={{
+        tabBarLabel: localisation.t(`header_screens.${RootScreens.Addition}`),
         tabBarIcon: ({color}: {color: string}) => (
           <TabBarIcon iconsType={RootScreens.Addition} color={color} />
         ),
       }}
     />
     <Tab.Screen
-      name={localisation.t(`header_screens.${RootScreens.Options}`)}
+      name={RootScreens.Options}
       component={OptionsStack}
       options={{
+        tabBarLabel: localisation.t(`header_screens.${RootScreens.Options}`),
         tabBarIcon: ({color}: {color: string}) => (
           <TabBarIcon iconsType={RootScreens.Options} color={color} />
         ),
