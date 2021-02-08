@@ -71,9 +71,10 @@ export class CardsOfSets extends React.Component<Props> {
           ListEmptyComponent={this.cardsEmptyComponent}
           data={this.props.sets.cardsList}
           renderItem={this.renderItem}
-          itemDimension={192}
+          itemDimension={180}
           keyExtractor={this.keyExtractor}
           spacing={8}
+          numColumns={2}
         />
       </View>
     );

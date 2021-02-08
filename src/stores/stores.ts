@@ -58,7 +58,7 @@ export class RootStore implements MainStore {
 
 export const createRootStore = (): RootStore => {
   const defaultParams = {
-    access_token: 'USTSjONB33TR67fwXLxYxMgX0uvSu5hc9K',
+    access_token: 'US75Tcl39DbQFOCQp4xbaV6iv05g38Vx5o',
   };
 
   const http = new Http('https://us.api.blizzard.com/hearthstone/', {
