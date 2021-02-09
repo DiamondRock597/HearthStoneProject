@@ -7,10 +7,10 @@ import {
 
 import {RootScreens, RootStackParamList} from './screens';
 import {TabNavigation} from './tab/TabNavigation';
-import {Description} from '../screens/Description';
-import {DescriptionSets} from '../screens/DescriptionSets';
-import {CardsOfSets} from '../screens/CardsOfSets';
-import {localisation} from '../localisation/localisation';
+import {Description} from '../../screens/Description';
+import {DescriptionSets} from '../../screens/DescriptionSets';
+import {CardsOfSets} from '../../screens/CardsOfSets';
+import {localisation} from '../../localisation/localisation';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

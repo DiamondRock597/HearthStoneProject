@@ -12,7 +12,7 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 import HTMLView from 'react-native-htmlview';
 
-import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {Card as CardModel} from '../models/card';
 import {
   DescriptionValue,

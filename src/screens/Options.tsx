@@ -9,7 +9,7 @@ import {Languages, localisation} from '../localisation/localisation';
 import {Stores} from '../stores/stores';
 import {StoreOfUser} from '../stores/user';
 import {StoreOfCards} from '../stores/cards';
-import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 
 const {height}: ScaledSize = Dimensions.get('window');
 

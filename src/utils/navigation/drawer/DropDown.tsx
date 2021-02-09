@@ -1,10 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {localisation} from '../../localisation/localisation';
+import {localisation} from '../../../localisation/localisation';
 
-import {Classes, MinionType, Rarity, Types} from '../../models/card_filters';
-import {styles} from '../../styles/dropdown';
+import {Classes, MinionType, Rarity, Types} from '../../../models/card_filters';
+import {styles} from '../../../styles/dropdown';
 
 const classes = [
   {

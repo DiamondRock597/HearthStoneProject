@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {SetsStore} from '../stores/sets';

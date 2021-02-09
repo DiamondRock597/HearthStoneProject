@@ -16,7 +16,7 @@ import {RouteProp} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Stores} from '../stores/stores';
-import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {StoreOfCards} from '../stores/cards';
 import {Card as CardModel} from '../models/card';
 import {Card} from '../components/Card';

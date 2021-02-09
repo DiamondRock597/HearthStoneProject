@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'mobx-react';
 
-import {MainNavigation} from './src/navigation/MainNavigation';
+import {MainNavigation} from './src/utils/navigation/MainNavigation';
 import {
   createRootStore,
   MainStore,

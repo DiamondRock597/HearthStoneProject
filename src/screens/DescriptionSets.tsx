@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import {RootScreens, RootStackParamList} from '../navigation/screens';
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {SetModel} from '../models/set';
 
 import {styles} from '../styles/descriptionSets';
