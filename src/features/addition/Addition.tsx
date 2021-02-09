@@ -8,15 +8,15 @@ import {
   View,
 } from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {StackNavigationProp} from '@react-navigation/stack';
 
+import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
 import {SetsStore} from '../stores/sets';
 import {Stores} from '../stores/stores';
 import {Set} from '../components/Set';
 import {SetModel} from '../models/set';
 
-import {styles} from '../styles/addition';
+import {styles} from './styles/addition';
 
 const {width}: ScaledSize = Dimensions.get('screen');
 const paddingForImage = 10;

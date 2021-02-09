@@ -11,6 +11,7 @@ import {Description} from '../../screens/Description';
 import {DescriptionSets} from '../../screens/DescriptionSets';
 import {CardsOfSets} from '../../screens/CardsOfSets';
 import {localisation} from '../../localisation/localisation';
+import {mainStackOptions, optionsMap} from './stack_options';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -26,16 +27,11 @@ export const MainNavigation = () => (
   <NavigationContainer>
     <Stack.Navigator
       initialRouteName={RootScreens.Home}
-      screenOptions={{
-        headerTitleStyle: {fontSize: 20, color: 'white'},
-        headerTitleAlign: 'center',
-        headerStyle: {backgroundColor: '#807c74'},
-        headerTintColor: 'white',
-      }}>
+      screenOptions={mainStackOptions}>
       <Stack.Screen
         name={RootScreens.Home}
         component={TabNavigation}
-        options={{headerShown: false}}
+        options={optionsMap[RootScreens.Home]}
       />
       <Stack.Screen
         name={RootScreens.Description}

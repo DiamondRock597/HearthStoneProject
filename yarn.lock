@@ -744,6 +744,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@computools/eslint-config-react-native@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@computools/eslint-config-react-native/-/eslint-config-react-native-1.0.11.tgz#c8a9e0f15efc4ece545b76d186888c3668738d89"
+  integrity sha512-jbu1RevQbowUWtxcD+0RfKYOkte5WjAOhyg8NjjgeaVizMMmIGlFV0Y9j/92sCE7deU25f584cSBE6fL8WSVrg==
+  dependencies:
+    "@react-native-community/eslint-config" "2.0.0"
+    eslint-import-resolver-typescript "2.3.0"
+    eslint-plugin-eslint-comments "3.2.0"
+    eslint-plugin-import "2.22.1"
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -2827,15 +2837,6 @@ eslint-config-prettier@^6.10.1:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-react-native-computools@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/eslint-config-react-native-computools/-/eslint-config-react-native-computools-1.0.4.tgz#7fcae00f997f1812b136f46d3da89ea29387b65d"
-  integrity sha512-ujNFA4qFcy2n94uKmlIqEjgFIfJpUYSYNXy5gv4qiLKgh9lhS+fFphFijXhJwgJCMH2biFEQU1fGl9vYjPOjpw==
-  dependencies:
-    "@react-native-community/eslint-config" "2.0.0"
-    eslint-plugin-eslint-comments "3.2.0"
-    eslint-plugin-import "2.22.1"
-
 eslint-import-resolver-node@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.4.tgz#85ffa81942c25012d8231096ddf679c03042c717"
@@ -2843,6 +2844,17 @@ eslint-import-resolver-node@^0.3.4:
   dependencies:
     debug "^2.6.9"
     resolve "^1.13.1"
+
+eslint-import-resolver-typescript@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.3.0.tgz#0870988098bc6c6419c87705e6b42bee89425445"
+  integrity sha512-MHSXvmj5e0SGOOBhBbt7C+fWj1bJbtSYFAD85Xeg8nvUtuooTod2HQb8bfhE9f5QyyNxEfgzqOYFCvmdDIcCuw==
+  dependencies:
+    debug "^4.1.1"
+    glob "^7.1.6"
+    is-glob "^4.0.1"
+    resolve "^1.17.0"
+    tsconfig-paths "^3.9.0"
 
 eslint-module-utils@^2.6.0:
   version "2.6.0"
