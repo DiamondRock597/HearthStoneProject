@@ -16,8 +16,8 @@ import {Card} from '@components/Card';
 import {Card as CardModel} from '@models/card';
 import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 import {StoreOfSets} from '@stores/sets';
-import {Stores} from '@stores/stores';
-import {localisation} from '@localisation/localisation';
+import {Stores} from 'stores/main_stores';
+import {localisation} from 'localisation/Localisation';
 
 import {styles} from '../styles/description';
 

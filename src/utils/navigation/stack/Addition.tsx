@@ -2,8 +2,8 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {RootScreens} from '../screens';
-import {Addition} from '@features/addition/Addition';
-import {localisation} from '@localisation/localisation';
+import {Addition} from 'features/additions/Addition';
+import {localisation} from '@localisation/Localisation';
 
 const Stack = createStackNavigator();
 

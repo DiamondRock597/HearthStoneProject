@@ -15,12 +15,12 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Stores} from '@stores/stores';
+import {Stores} from 'stores/main_stores';
 import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 import {StoreOfCards} from '@stores/cards';
 import {Card as CardModel} from '@models/card';
 import {Card} from '@components/Card';
-import {localisation} from '@localisation/localisation';
+import {localisation} from 'localisation/Localisation';
 
 import {styles} from './styles/home';
 

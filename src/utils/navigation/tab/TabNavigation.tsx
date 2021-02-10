@@ -6,7 +6,7 @@ import {HomeScreen as HomeStack} from '../stack/Home';
 import {AdditionScreen as AdditionStack} from '../stack/Addition';
 import {TabBarIcon} from './TabBarIcon';
 import {OptionsScreen as OptionsStack} from '../stack/Options';
-import {localisation} from '@localisation/localisation';
+import {localisation} from 'localisation/Localisation';
 
 const Tab = createBottomTabNavigator();
 

@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {RootScreens} from '../screens';
 import {Options} from '../../../screens/Options';
-import {localisation} from '@localisation/localisation';
+import {localisation} from 'localisation/Localisation';
 
 const Stack = createStackNavigator();
 

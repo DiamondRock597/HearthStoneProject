@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {icons, Characteristic} from '@assets/icons/menuIcons';
 import {styles} from '../styles/description';
-import {localisation} from '@localisation/localisation';
+import {localisation} from 'localisation/Localisation';
 
 export enum DescriptionValues {
   Name = 'Name',

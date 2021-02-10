@@ -8,7 +8,7 @@ import {DrawerActions} from '@react-navigation/native';
 import {RootScreens, RootStackParamList} from '../screens';
 import {MenuButton} from '@components/MenuButton';
 import {DrawerNavigation} from '../drawer/DrawerNavigation';
-import {localisation} from '@localisation/localisation';
+import {localisation} from 'localisation/Localisation';
 
 const Stack = createStackNavigator();
 
