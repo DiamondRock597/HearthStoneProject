@@ -1,9 +1,9 @@
-import {Card as CardDTO} from '../dto/card';
-import {Set as SetDTO} from '../dto/set';
-import {Languages} from '../localisation/localisation';
-import {Card as CardModel} from '../models/card';
-import {Classes, MinionType, Rarity, Types} from '../models/card_filters';
-import {SetModel} from '../models/set';
+import {Card as CardDTO} from '@dto/card';
+import {Set as SetDTO} from '@dto/set';
+import {Languages} from '@localisation/localisation';
+import {Card as CardModel} from '@models/card';
+import {Classes, MinionType, Rarity, Types} from '@models/card_filters';
+import {SetModel} from '@models/set';
 import {HttpAPI} from './http_api';
 
 const mapLanguages = {

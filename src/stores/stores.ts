@@ -1,8 +1,8 @@
 import {create} from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {CardsAPI, HeartStoneAPI} from '../api/CardAPI';
-import {Http} from '../api/http_api';
+import {CardsAPI, HeartStoneAPI} from '@api/CardAPI';
+import {Http} from '@api/http_api';
 import {CardStore, StoreOfCards} from './cards';
 import {SetsStore, StoreOfSets} from './sets';
 import {StoreOfUser, UserStore} from './user';

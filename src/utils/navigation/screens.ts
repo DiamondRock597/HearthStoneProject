@@ -1,5 +1,5 @@
-import {Card as CardModel} from '../../models/card';
-import {SetModel} from '../../models/set';
+import {Card as CardModel} from '@models/card';
+import {SetModel} from '@models/set';
 
 export enum RootScreens {
   Home = 'Home',

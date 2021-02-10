@@ -1,4 +1,4 @@
-import {RootScreens} from '../utils/navigation/screens';
+import {RootScreens} from '@utils/navigation/screens';
 
 export enum Characteristic {
   Name = 'name',

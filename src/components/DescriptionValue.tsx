@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {icons, Characteristic} from '../icons/menuIcons';
+import {icons, Characteristic} from '@assets/icons/menuIcons';
 import {styles} from '../styles/description';
-import {localisation} from '../localisation/localisation';
+import {localisation} from '@localisation/localisation';
 
 export enum DescriptionValues {
   Name = 'Name',

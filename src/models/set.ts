@@ -1,5 +1,5 @@
 import {imageURL, defaultImageURL} from './setsImages';
-import {Set as SetDTO} from '../dto/set';
+import {Set as SetDTO} from '@dto/set';
 
 const countSymbolForDate: number = 3;
 

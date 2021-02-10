@@ -1,9 +1,8 @@
 import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
-import {HeartStoneAPI} from '../api/CardAPI';
-
-import {Card as CardModel} from '../models/card';
-import {Classes, Types, Rarity, MinionType} from '../models/card_filters';
+import {HeartStoneAPI} from '@api/CardAPI';
+import {Card as CardModel} from '@models/card';
+import {Classes, Types, Rarity, MinionType} from '@models/card_filters';
 import {BaseStore} from './base_store';
 
 const pageNumber: number = 1;

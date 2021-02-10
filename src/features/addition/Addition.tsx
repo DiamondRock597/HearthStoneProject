@@ -10,11 +10,11 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
-import {SetsStore} from '../stores/sets';
-import {Stores} from '../stores/stores';
-import {Set} from '../components/Set';
-import {SetModel} from '../models/set';
+import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
+import {SetsStore} from '@stores/sets';
+import {Stores} from '@stores/stores';
+import {Set} from '@components/Set';
+import {SetModel} from '@models/set';
 
 import {styles} from './styles/addition';
 

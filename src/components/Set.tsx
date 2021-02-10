@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import {SetModel} from '../models/set';
+import {SetModel} from '@models/set';
 
 import {styles} from '../styles/addition';
 

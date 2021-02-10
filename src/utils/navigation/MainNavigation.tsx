@@ -10,7 +10,7 @@ import {TabNavigation} from './tab/TabNavigation';
 import {Description} from '../../screens/Description';
 import {DescriptionSets} from '../../screens/DescriptionSets';
 import {CardsOfSets} from '../../screens/CardsOfSets';
-import {localisation} from '../../localisation/localisation';
+import {localisation} from '@localisation/localisation';
 import {mainStackOptions, optionsMap} from './stack_options';
 
 const Stack = createStackNavigator<RootStackParamList>();

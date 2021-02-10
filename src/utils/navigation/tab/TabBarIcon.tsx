@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {icons} from '../../../icons/menuIcons';
+import {icons} from '@assets/icons/menuIcons';
 import {RootScreens} from '../screens';
 
 const tabIcon = (color: string) => ({tintColor: color, width: 35, height: 35});
