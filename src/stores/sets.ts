@@ -4,6 +4,8 @@ import {BaseStore} from './base_store';
 import {HeartStoneAPI} from '@api/CardAPI';
 import {SetModel} from '@models/set';
 import {Card as CardModel} from '@models/card';
+import {injector} from 'utils/injector';
+import {Configs} from '@config/configs';
 
 export interface StoreOfSets extends BaseStore {
   cardsList: Array<CardModel>;
@@ -28,15 +30,14 @@ export class SetsStore implements StoreOfSets {
   @observable public error: boolean = false;
   @observable public valueInput: string = '';
 
-  private SetsHTTP: HeartStoneAPI;
+  private SetsHTTP: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
   private page: number = pageNumber;
 
   @computed public get cardsList() {
     return toJS(this.collectionCards);
   }
 
-  public constructor(http: HeartStoneAPI) {
-    this.SetsHTTP = http;
+  public constructor() {
     makeObservable(this);
   }
 

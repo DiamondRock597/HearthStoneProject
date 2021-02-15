@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import {styles} from '../styles/home';
+import {styles} from '../features/main/styles/home';
 
 interface Props {
   handleOpen(): void;

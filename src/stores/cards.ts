@@ -4,6 +4,8 @@ import {HeartStoneAPI} from '@api/CardAPI';
 import {Card as CardModel} from '@models/card';
 import {Classes, Types, Rarity, MinionType} from '@models/card_filters';
 import {BaseStore} from './base_store';
+import {injector} from '@utils/injector';
+import {Configs} from '@config/configs';
 
 const pageNumber: number = 1;
 
@@ -38,15 +40,14 @@ export class CardStore implements StoreOfCards {
   public valueInput: string = '';
 
   private page: number = pageNumber;
-  private HeartstoneAPI: HeartStoneAPI;
+  private HeartstoneAPI: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
 
   @computed public get cardsList() {
     return toJS(this.cards);
   }
 
-  public constructor(cardsAPI: HeartStoneAPI) {
+  public constructor() {
     makeObservable(this);
-    this.HeartstoneAPI = cardsAPI;
   }
 
   @action.bound public cleanCards: () => void = () => {

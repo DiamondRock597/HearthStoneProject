@@ -5,6 +5,8 @@ import {HeartStoneAPI} from '@api/CardAPI';
 import {Languages} from 'localisation/Localisation';
 import {BaseStore} from './base_store';
 import {PersistStore} from './persist_store';
+import {injector} from 'utils/injector';
+import {Configs} from 'config/configs';
 
 export interface StoreOfUser extends PersistStore, BaseStore {
   selectedLocale: Languages;
@@ -15,15 +17,14 @@ export interface StoreOfUser extends PersistStore, BaseStore {
 export class UserStore implements StoreOfUser {
   @persist @observable public locale: Languages = Languages.EN;
 
-  private cardsAPI: HeartStoneAPI;
+  private cardsAPI: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
 
   @computed public get selectedLocale() {
     return this.locale;
   }
 
-  public constructor(cardsAPI: HeartStoneAPI) {
+  public constructor() {
     makeObservable(this);
-    this.cardsAPI = cardsAPI;
   }
 
   @action.bound

@@ -4,13 +4,13 @@ import {Dimensions, ScaledSize, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {Languages, localisation} from '../localisation/Localisation';
-import {Stores} from '../stores/main_stores';
+import {Languages, localisation} from '@localisation/Localisation';
+import {Stores} from '@stores/main_stores';
 import {StoreOfUser} from '../stores/user';
 import {StoreOfCards} from '../stores/cards';
-import {RootScreens, RootStackParamList} from '../utils/navigation/screens';
+import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 
-import {styles} from '../styles/dropdown';
+import {styles} from '../utils/navigation/drawer/styles/drop_down';
 
 const {height}: ScaledSize = Dimensions.get('window');
 

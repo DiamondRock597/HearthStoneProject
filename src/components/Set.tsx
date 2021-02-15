@@ -4,7 +4,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 import {SetModel} from '@models/set';
 
-import {styles} from '../styles/addition';
+import {styles} from '../features/additions/styles/addition';
 
 interface Props {
   item: SetModel;

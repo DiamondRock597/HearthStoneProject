@@ -5,6 +5,8 @@ import {Card as CardModel} from '@models/card';
 import {Classes, MinionType, Rarity, Types} from '@models/card_filters';
 import {SetModel} from '@models/set';
 import {HttpAPI} from './http_api';
+import {injector} from 'utils/injector';
+import {Configs} from 'config/configs';
 
 const mapLanguages = {
   [Languages.EN]: 'en_US',
@@ -39,11 +41,7 @@ export interface HeartStoneAPI {
 }
 
 export class CardsAPI implements HeartStoneAPI {
-  private http: HttpAPI;
-
-  public constructor(http: HttpAPI) {
-    this.http = http;
-  }
+  private http: HttpAPI = injector.get(Configs.Http);
 
   public getCards: (
     params: Params,

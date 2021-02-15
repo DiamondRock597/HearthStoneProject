@@ -19,6 +19,7 @@ module.exports = {
           '@stores': './src/stores',
           '@localisation': './src/localisation',
           '@models': './src/models',
+          '@config': './src/config',
         },
       },
     ],

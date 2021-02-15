@@ -11,7 +11,7 @@ import {Params} from '@api/CardAPI';
 import {Stores} from 'stores/main_stores';
 import {CardStore} from '@stores/cards';
 import {Classes, Types, Rarity, MinionType} from '@models/card_filters';
-import {Home} from '@features/home/Home';
+import {Home} from 'features/main/Home';
 
 const Drawer = createDrawerNavigator();
 const {height}: ScaledSize = Dimensions.get('window');

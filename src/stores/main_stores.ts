@@ -35,10 +35,10 @@ export class RootStore implements MainStore {
   public [Stores.Sets]: StoreOfSets;
   public [Stores.User]: StoreOfUser;
 
-  public constructor(HeartstoneAPI: HeartStoneAPI) {
-    this[Stores.Cards] = new CardStore(HeartstoneAPI);
-    this[Stores.Sets] = new SetsStore(HeartstoneAPI);
-    this[Stores.User] = new UserStore(HeartstoneAPI);
+  public constructor() {
+    this[Stores.Cards] = new CardStore();
+    this[Stores.Sets] = new SetsStore();
+    this[Stores.User] = new UserStore();
   }
 
   public [StoresMethods.LoadStores]: () => Promise<void> = async () => {
@@ -57,15 +57,6 @@ export class RootStore implements MainStore {
 }
 
 export const createRootStore = (): RootStore => {
-  const defaultParams = {
-    access_token: 'US75Tcl39DbQFOCQp4xbaV6iv05g38Vx5o',
-  };
-
-  const http = new Http('https://us.api.blizzard.com/hearthstone/', {
-    params: defaultParams,
-  });
-
-  const HeartstoneAPI = new CardsAPI(http);
-  const rootStore = new RootStore(HeartstoneAPI);
+  const rootStore = new RootStore();
   return rootStore;
 };
