@@ -21,7 +21,7 @@ export interface Params {
 }
 
 export interface CardsRep {
-  getCards: (
+  fetchCards: (
     params: Params,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
 
@@ -33,11 +33,7 @@ export interface CardsRep {
 export class CardsRepository implements CardsRep {
   private http: HttpAPI = injector.get(Configs.Http);
 
-  public getCards: (
-    params: Params,
-  ) => Promise<{cards: Array<CardModel>; pageCount: number}> = async (
-    params,
-  ) => {
+  public fetchCards = async (params: Params) => {
     const res = await this.http.get<{
       cards: Array<CardDTO>;
       page: number;

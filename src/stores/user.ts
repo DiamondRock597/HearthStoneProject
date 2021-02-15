@@ -1,12 +1,13 @@
 import {action, computed, makeObservable, observable} from 'mobx';
 import {persist} from 'mobx-persist';
 
-import {HeartStoneAPI} from 'api/card_api';
 import {Languages} from 'localisation/Localisation';
 import {BaseStore} from './base_store';
 import {PersistStore} from './persist_store';
 import {injector} from 'utils/injector';
 import {Configs} from 'config/configs';
+import {CardsServise} from 'api/cards';
+import {Servises} from 'typings/servises';
 
 export interface StoreOfUser extends PersistStore, BaseStore {
   selectedLocale: Languages;
@@ -17,7 +18,7 @@ export interface StoreOfUser extends PersistStore, BaseStore {
 export class UserStore implements StoreOfUser {
   @persist @observable public locale: Languages = Languages.EN;
 
-  private cardsAPI: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
+  private cardsServise: CardsServise = injector.get(Servises.Cards);
 
   @computed public get selectedLocale() {
     return this.locale;
@@ -42,6 +43,6 @@ export class UserStore implements StoreOfUser {
   };
 
   private setupParams: () => void = () => {
-    this.cardsAPI.setupLocale(this.locale);
+    this.cardsServise.setupLocale(this.locale);
   };
 }

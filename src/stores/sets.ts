@@ -6,6 +6,8 @@ import {SetModel} from '@models/set';
 import {Card as CardModel} from '@models/card';
 import {injector} from 'utils/injector';
 import {Configs} from '@config/configs';
+import {Servises} from 'typings/servises';
+import {SetsServise} from 'api/sets';
 
 export interface StoreOfSets extends BaseStore {
   cardsList: Array<CardModel>;
@@ -30,7 +32,7 @@ export class SetsStore implements StoreOfSets {
   @observable public error: boolean = false;
   @observable public valueInput: string = '';
 
-  private SetsHTTP: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
+  private setsServise: SetsServise = injector.get<SetsServise>(Servises.Sets);
   private page: number = pageNumber;
 
   @computed public get cardsList() {
@@ -42,7 +44,7 @@ export class SetsStore implements StoreOfSets {
   }
 
   @action.bound public getSets: () => void = async () => {
-    this.sets = await this.SetsHTTP.getSets();
+    this.sets = await this.setsServise.getSets();
   };
 
   @action.bound public cleanCards: () => void = () => {
@@ -81,7 +83,7 @@ export class SetsStore implements StoreOfSets {
       }: {
         cards: Array<CardModel>;
         pageCount: number;
-      } = await this.SetsHTTP.getCardsOfCollection(
+      } = await this.setsServise.getCardsOfCollection(
         id,
         this.page,
         this.valueInput,

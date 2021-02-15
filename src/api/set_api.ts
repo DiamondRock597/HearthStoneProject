@@ -6,12 +6,23 @@ import {Set as SetDTO} from '@dto/set';
 import {Card as CardDTO} from '@dto/card';
 import {Card as CardModel} from '@models/card';
 
-export interface SetsRep {}
+export interface SetsRep {
+  getSets: () => Promise<Array<SetModel>>;
+
+  getCardsOfCollection: (
+    id: number,
+    page: number,
+    textFilter?: string,
+  ) => Promise<{
+    cards: Array<CardModel>;
+    pageCount: number;
+  }>;
+}
 
 export class SetsRepository implements SetsRep {
   private http: HttpAPI = injector.get<HttpAPI>(Configs.Http);
 
-  public getSets: () => Promise<Array<SetModel>> = async () => {
+  public getSets = async () => {
     const res = await this.http.get<Array<SetDTO>>('metadata/sets');
 
     const sets: Array<SetModel> = res.map((item) => SetModel.Parse(item));

@@ -1,11 +1,11 @@
 import {observable, action, computed, makeObservable, toJS} from 'mobx';
 
-import {HeartStoneAPI} from 'api/card_api';
+import {CardsServise} from 'api/cards';
 import {Card as CardModel} from '@models/card';
 import {Classes, Types, Rarity, MinionType} from '@models/card_filters';
 import {BaseStore} from './base_store';
 import {injector} from '@utils/injector';
-import {Configs} from '@config/configs';
+import {Servises} from 'typings/servises';
 
 const pageNumber: number = 1;
 
@@ -40,7 +40,9 @@ export class CardStore implements StoreOfCards {
   public valueInput: string = '';
 
   private page: number = pageNumber;
-  private HeartstoneAPI: HeartStoneAPI = injector.get(Configs.HeartStoneAPI);
+  private cardsServise: CardsServise = injector.get<CardsServise>(
+    Servises.Cards,
+  );
 
   @computed public get cardsList() {
     return toJS(this.cards);
@@ -107,7 +109,7 @@ export class CardStore implements StoreOfCards {
       }: {
         cards: Array<CardModel>;
         pageCount: number;
-      } = await this.HeartstoneAPI.getCards({
+      } = await this.cardsServise.getCards({
         textFilter: this.valueInput,
         minionType: this.minionType,
         classType: this.classType,
