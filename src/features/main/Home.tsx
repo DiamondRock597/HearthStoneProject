@@ -19,7 +19,7 @@ import {Stores} from 'stores/main_stores';
 import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 import {StoreOfCards} from '@stores/cards';
 import {Card as CardModel} from '@models/card';
-import {Card} from '@components/Card';
+import {Card} from 'components/cardItem/Card';
 import {localisation} from 'localisation/Localisation';
 
 import {styles} from './styles/home';
@@ -76,7 +76,11 @@ export class Home extends React.Component<Props, State> {
     if (this.props.cards.isLoading) {
       return <ActivityIndicator color="black" size={sizeIcons} />;
     } else if (this.props.cards.error) {
-      return <Icon size={sizeIcons} color="red" name="error" />;
+      return (
+        <View style={styles.errorMessage}>
+          <Icon size={sizeIcons} color="red" name="error" />
+        </View>
+      );
     }
 
     return <Text>{localisation.t('cards_empty.NoCards')}</Text>;
@@ -90,6 +94,7 @@ export class Home extends React.Component<Props, State> {
     return (
       <View style={styles.background}>
         <FlatGrid
+          showsVerticalScrollIndicator={false}
           onEndReached={this.fetchCards}
           onEndReachedThreshold={0.5}
           ListEmptyComponent={this.cardsEmptyComponent}
@@ -107,17 +112,17 @@ export class Home extends React.Component<Props, State> {
 
   private keyExtractor = (item: CardModel) => `Card - ${item.id}`;
 
-  private handleChangeInput: (text: string) => void = (text) => {
+  private handleChangeInput = (text: string) => {
     this.props.cards.setSearchValue(text);
     this.props.cards.cleanCards();
     this.props.cards.fetchCards();
   };
 
-  private fetchCards: () => void = () => {
+  private fetchCards = () => {
     this.props.cards.fetchCards();
   };
 
-  private handlePress: (card: CardModel) => void = (card) => {
+  private handlePress = (card: CardModel) => {
     this.props.navigation.navigate(RootScreens.Description, {card});
   };
 

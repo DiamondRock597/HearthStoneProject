@@ -12,7 +12,7 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Card} from '@components/Card';
+import {Card} from 'components/cardItem/Card';
 import {Card as CardModel} from '@models/card';
 import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 import {StoreOfSets} from '@stores/sets';
@@ -65,6 +65,7 @@ export class CardsOfSets extends React.Component<Props> {
     return (
       <View style={styles.background}>
         <FlatGrid
+          showsVerticalScrollIndicator={false}
           onEndReached={this.fetchCards}
           onEndReachedThreshold={0.5}
           ListHeaderComponent={this.cardsHeaderComponent}
@@ -80,23 +81,22 @@ export class CardsOfSets extends React.Component<Props> {
     );
   }
 
-  private keyExtractor: (item: CardModel) => string = (item) =>
-    `Card of collection - ${item.id}`;
+  private keyExtractor = (item: CardModel) => `Card of collection - ${item.id}`;
 
   private renderItem = ({item}: ListRenderItemInfo<CardModel>) => (
     <Card item={item} onPress={this.handlePress} />
   );
 
-  private handlePress: (card: CardModel) => void = (card) => {
+  private handlePress = (card: CardModel) => {
     this.props.navigation.navigate(RootScreens.Description, {card});
   };
 
-  private fetchCards: () => void = () => {
+  private fetchCards = () => {
     const {id}: {id: number} = this.props.route.params;
     this.props.sets.fetchCards(id);
   };
 
-  private handleChangeInput: (text: string) => void = (text) => {
+  private handleChangeInput = (text: string) => {
     const {id}: {id: number} = this.props.route.params;
     this.props.sets.setSearchValue(text);
     this.props.sets.cleanCards();

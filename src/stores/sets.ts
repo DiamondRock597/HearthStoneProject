@@ -1,11 +1,9 @@
 import {observable, makeObservable, action, computed, toJS} from 'mobx';
 
 import {BaseStore} from './base_store';
-import {HeartStoneAPI} from 'api/card_api';
 import {SetModel} from '@models/set';
 import {Card as CardModel} from '@models/card';
 import {injector} from 'utils/injector';
-import {Configs} from '@config/configs';
 import {Servises} from 'typings/servises';
 import {SetsServise} from 'api/sets';
 
@@ -77,17 +75,19 @@ export class SetsStore implements StoreOfSets {
 
       this.isLoading = true;
 
+      const params = {
+        id,
+        page: this.page,
+        valueInput: this.valueInput,
+      };
+
       const {
         cards,
         pageCount,
       }: {
         cards: Array<CardModel>;
         pageCount: number;
-      } = await this.setsServise.getCardsOfCollection(
-        id,
-        this.page,
-        this.valueInput,
-      );
+      } = await this.setsServise.getCardsOfCollection(params);
 
       if (pageCount < this.page) {
         return;

@@ -1,11 +1,35 @@
 import {create} from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {CardsAPI, HeartStoneAPI} from 'api/card_api';
-import {Http} from '@api/http_api';
 import {CardStore, StoreOfCards} from './cards';
 import {SetsStore, StoreOfSets} from './sets';
 import {StoreOfUser, UserStore} from './user';
+import {Http} from 'api/http_api';
+import {injector} from 'utils/injector';
+import {Configs} from 'config/configs';
+import {Repositories} from 'typings/repositories';
+import {CardsRepository} from 'api/card_api';
+import {Servises} from 'typings/servises';
+import {CardsServise} from 'api/cards';
+import {SetsRepository} from 'api/set_api';
+import {SetsServise} from 'api/sets';
+
+const initLogic = async () => {
+  const defaultParams = {
+    access_token: 'USjBabWzk8ZkSq3u8POlD6uJvYJqBKjIw1',
+  };
+  const http = new Http('https://us.api.blizzard.com/hearthstone/', {
+    params: defaultParams,
+  });
+
+  injector.set(Configs.Http, http);
+
+  injector.set(Repositories.Cards, new CardsRepository());
+  injector.set(Servises.Cards, new CardsServise());
+
+  injector.set(Repositories.Sets, new SetsRepository());
+  injector.set(Servises.Sets, new SetsServise());
+};
 
 export enum Stores {
   Cards = 'cards',
@@ -36,6 +60,7 @@ export class RootStore implements MainStore {
   public [Stores.User]: StoreOfUser;
 
   public constructor() {
+    initLogic();
     this[Stores.Cards] = new CardStore();
     this[Stores.Sets] = new SetsStore();
     this[Stores.User] = new UserStore();

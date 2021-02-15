@@ -7,9 +7,9 @@ import {Card as CardDTO} from '@dto/card';
 import {Card as CardModel} from '@models/card';
 
 export interface SetsRep {
-  getSets: () => Promise<Array<SetModel>>;
+  fetchSets: () => Promise<Array<SetModel>>;
 
-  getCardsOfCollection: (
+  fetchCardsOfCollection: (
     id: number,
     page: number,
     textFilter?: string,
@@ -22,7 +22,7 @@ export interface SetsRep {
 export class SetsRepository implements SetsRep {
   private http: HttpAPI = injector.get<HttpAPI>(Configs.Http);
 
-  public getSets = async () => {
+  public fetchSets = async () => {
     const res = await this.http.get<Array<SetDTO>>('metadata/sets');
 
     const sets: Array<SetModel> = res.map((item) => SetModel.Parse(item));
@@ -30,7 +30,7 @@ export class SetsRepository implements SetsRep {
     return sets;
   };
 
-  public getCardsOfCollection = async (
+  public fetchCardsOfCollection = async (
     id: number,
     page: number,
     textFilter?: string,

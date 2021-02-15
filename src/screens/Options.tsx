@@ -47,11 +47,7 @@ export class Options extends React.Component<Props> {
     );
   }
 
-  private handleChange: (obj: {value: Languages}) => void = ({
-    value,
-  }: {
-    value: Languages;
-  }) => {
+  private handleChange = ({value}: {value: Languages}) => {
     this.props.user.setLocale(value);
     this.props.cards.cleanCards();
     localisation.selectLanguage(value);

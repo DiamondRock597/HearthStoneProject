@@ -24,4 +24,8 @@ export const styles = StyleSheet.create({
   icon: {
     marginLeft: 15,
   },
+  errorMessage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

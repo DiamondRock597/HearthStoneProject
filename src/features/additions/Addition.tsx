@@ -57,6 +57,7 @@ export class Addition extends React.Component<Props, State> {
     return (
       <View style={styles.background}>
         <FlatGrid
+          showsVerticalScrollIndicator={false}
           data={this.props.sets.sets}
           renderItem={this.renderItem}
           itemDimension={width - paddingForImage}
@@ -68,15 +69,13 @@ export class Addition extends React.Component<Props, State> {
     );
   }
 
-  private keyExtractor(item: SetModel) {
-    return `Set - ${item.id}`;
-  }
+  private keyExtractor = (item: SetModel) => `Set - ${item.id}`;
 
   private renderItem = ({item}: ListRenderItemInfo<SetModel>) => (
     <Set onPress={this.handlePress} item={item} />
   );
 
-  private handlePress: (item: SetModel) => void = (item) => {
+  private handlePress = (item: SetModel) => {
     this.props.navigation.navigate(RootScreens.DescriptionSets, {item});
   };
 }

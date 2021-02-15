@@ -45,6 +45,7 @@ export class NextLocalisation implements Localisation {
 }
 
 export const localisation: Localisation = new NextLocalisation({
+  language: Languages.EN,
   fallbackLng: Languages.EN,
   resources: {
     [Languages.EN]: {translation: en},
