@@ -13,7 +13,12 @@ import {localisation} from './src/localisation/Localisation';
 import {injector} from 'utils/injector';
 import {Http} from 'api/http_api';
 import {Configs} from 'config/configs';
-import {CardsAPI} from 'api/CardAPI';
+import {CardsRepository} from 'api/card_api';
+import {Repositories} from 'typings/repositories';
+import {SetsRepository} from 'api/set_api';
+import {Servises} from 'typings/servises';
+import {CardsServise} from 'api/cards';
+import {SetsServise} from 'api/sets';
 
 interface State {
   hydrated: boolean;
@@ -27,10 +32,13 @@ const initLogic = async () => {
     params: defaultParams,
   });
 
-  const heartStoneAPI = new CardsAPI();
-
   injector.set(Configs.Http, http);
-  injector.set(Configs.HeartStoneAPI, heartStoneAPI);
+
+  injector.set(Repositories.Cards, new CardsRepository());
+  injector.set(Servises.Cards, new CardsServise());
+
+  injector.set(Repositories.Sets, new SetsRepository());
+  injector.set(Servises.Sets, new SetsServise());
 };
 
 export class App extends React.Component<null, State> {

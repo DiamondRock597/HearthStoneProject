@@ -1,7 +1,7 @@
 import {observable, makeObservable, action, computed, toJS} from 'mobx';
 
 import {BaseStore} from './base_store';
-import {HeartStoneAPI} from '@api/CardAPI';
+import {HeartStoneAPI} from 'api/card_api';
 import {SetModel} from '@models/set';
 import {Card as CardModel} from '@models/card';
 import {injector} from 'utils/injector';

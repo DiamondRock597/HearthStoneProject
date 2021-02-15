@@ -1,9 +1,7 @@
 import {Card as CardDTO} from '@dto/card';
-import {Set as SetDTO} from '@dto/set';
 import {Languages} from 'localisation/Localisation';
 import {Card as CardModel} from '@models/card';
 import {Classes, MinionType, Rarity, Types} from '@models/card_filters';
-import {SetModel} from '@models/set';
 import {HttpAPI} from './http_api';
 import {injector} from 'utils/injector';
 import {Configs} from 'config/configs';
@@ -22,17 +20,9 @@ export interface Params {
   page: number;
 }
 
-export interface HeartStoneAPI {
+export interface CardsRep {
   getCards: (
     params: Params,
-  ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
-
-  getSets: () => Promise<Array<SetModel>>;
-
-  getCardsOfCollection: (
-    id: number,
-    page: number,
-    textFilter?: string,
   ) => Promise<{cards: Array<CardModel>; pageCount: number}>;
 
   setupLocale: (locale: Languages) => void;
@@ -40,7 +30,7 @@ export interface HeartStoneAPI {
   cleanCardAPI: () => void;
 }
 
-export class CardsAPI implements HeartStoneAPI {
+export class CardsRepository implements CardsRep {
   private http: HttpAPI = injector.get(Configs.Http);
 
   public getCards: (
@@ -67,39 +57,6 @@ export class CardsAPI implements HeartStoneAPI {
 
     const {pageCount}: {pageCount: number} = res;
 
-    return {cards, pageCount};
-  };
-
-  public getSets: () => Promise<Array<SetModel>> = async () => {
-    const res = await this.http.get<Array<SetDTO>>('metadata/sets');
-
-    const sets: Array<SetModel> = res.map((item) => SetModel.Parse(item));
-
-    return sets;
-  };
-
-  public getCardsOfCollection: (
-    id: number,
-    page: number,
-    textFilter?: string,
-  ) => Promise<{cards: Array<CardModel>; pageCount: number}> = async (
-    id,
-    page,
-    textFilter,
-  ) => {
-    const res = await this.http.get<{cards: Array<CardDTO>; pageCount: number}>(
-      'cards',
-      {
-        params: {
-          set: id,
-          page,
-          textFilter,
-        },
-      },
-    );
-
-    const cards = await res.cards.map((item: CardDTO) => CardModel.Parse(item));
-    const {pageCount}: {pageCount: number} = await res;
     return {cards, pageCount};
   };
 

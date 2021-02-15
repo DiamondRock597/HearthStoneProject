@@ -7,7 +7,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import {TypeDrawer} from './DropDown';
 import {RootScreens, RootStackParamList} from '../screens';
-import {Params} from '@api/CardAPI';
+import {Params} from 'api/card_api';
 import {Stores} from 'stores/main_stores';
 import {CardStore} from '@stores/cards';
 import {Classes, Types, Rarity, MinionType} from '@models/card_filters';

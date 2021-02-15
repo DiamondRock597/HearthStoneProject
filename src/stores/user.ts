@@ -1,7 +1,7 @@
 import {action, computed, makeObservable, observable} from 'mobx';
 import {persist} from 'mobx-persist';
 
-import {HeartStoneAPI} from '@api/CardAPI';
+import {HeartStoneAPI} from 'api/card_api';
 import {Languages} from 'localisation/Localisation';
 import {BaseStore} from './base_store';
 import {PersistStore} from './persist_store';
