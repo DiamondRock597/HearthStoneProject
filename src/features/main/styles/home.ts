@@ -21,9 +21,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fafae8',
     flex: 1,
   },
-  icon: {
-    marginLeft: 15,
-  },
+
   errorMessage: {
     justifyContent: 'center',
     alignItems: 'center',

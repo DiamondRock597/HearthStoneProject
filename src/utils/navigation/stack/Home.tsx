@@ -6,7 +6,7 @@ import {
 import {DrawerActions} from '@react-navigation/native';
 
 import {RootScreens, RootStackParamList} from '../screens';
-import {MenuButton} from '@components/MenuButton';
+import {MenuButton} from 'components/menu_button/MenuButton';
 import {DrawerNavigation} from '../drawer/DrawerNavigation';
 import {localisation} from 'localisation/Localisation';
 

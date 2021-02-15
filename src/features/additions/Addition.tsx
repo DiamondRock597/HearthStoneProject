@@ -13,7 +13,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
 import {SetsStore} from '@stores/sets';
 import {Stores} from 'stores/main_stores';
-import {Set} from '@components/Set';
+import {Set} from 'components/set/Set';
 import {SetModel} from '@models/set';
 
 import {styles} from './styles/addition';
