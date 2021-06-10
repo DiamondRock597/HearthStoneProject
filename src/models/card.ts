@@ -1,4 +1,4 @@
-import {Card as CardDTO} from '../dto/card';
+import {Card as CardDTO} from '@dto/card';
 
 export class Card {
   public id: number;

@@ -2,14 +2,14 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'mobx-react';
 
-import {MainNavigation} from './src/navigation/MainNavigation';
+import {MainNavigation} from './src/utils/navigation/MainNavigation';
 import {
   createRootStore,
   MainStore,
   Stores,
   StoresMethods,
-} from './src/stores/stores';
-import {localisation} from './src/localisation/localisation';
+} from './src/stores/main_stores';
+import {localisation} from './src/localisation/Localisation';
 
 interface State {
   hydrated: boolean;

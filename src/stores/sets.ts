@@ -1,10 +1,11 @@
 import {observable, makeObservable, action, computed, toJS} from 'mobx';
 
 import {BaseStore} from './base_store';
-import {HeartStoneAPI} from '../api/CardAPI';
-import {SetModel} from '../models/set';
-import {Card as CardModel} from '../models/card';
-import {act} from 'react-test-renderer';
+import {SetModel} from '@models/set';
+import {Card as CardModel} from '@models/card';
+import {injector} from 'utils/injector';
+import {Servises} from 'typings/servises';
+import {SetsServise} from 'api/sets';
 
 export interface StoreOfSets extends BaseStore {
   cardsList: Array<CardModel>;
@@ -29,20 +30,19 @@ export class SetsStore implements StoreOfSets {
   @observable public error: boolean = false;
   @observable public valueInput: string = '';
 
-  private SetsHTTP: HeartStoneAPI;
+  private setsServise: SetsServise = injector.get<SetsServise>(Servises.Sets);
   private page: number = pageNumber;
 
   @computed public get cardsList() {
     return toJS(this.collectionCards);
   }
 
-  public constructor(http: HeartStoneAPI) {
-    this.SetsHTTP = http;
+  public constructor() {
     makeObservable(this);
   }
 
   @action.bound public getSets: () => void = async () => {
-    this.sets = await this.SetsHTTP.getSets();
+    this.sets = await this.setsServise.getSets();
   };
 
   @action.bound public cleanCards: () => void = () => {
@@ -75,17 +75,19 @@ export class SetsStore implements StoreOfSets {
 
       this.isLoading = true;
 
+      const params = {
+        id,
+        page: this.page,
+        valueInput: this.valueInput,
+      };
+
       const {
         cards,
         pageCount,
       }: {
         cards: Array<CardModel>;
         pageCount: number;
-      } = await this.SetsHTTP.getCardsOfCollection(
-        id,
-        this.page,
-        this.valueInput,
-      );
+      } = await this.setsServise.getCardsOfCollection(params);
 
       if (pageCount < this.page) {
         return;

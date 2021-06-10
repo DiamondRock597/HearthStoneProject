@@ -11,11 +11,11 @@ import {
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import {RootScreens, RootStackParamList} from '../navigation/screens';
-import {SetModel} from '../models/set';
+import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
+import {SetModel} from '@models/set';
+import {localisation} from 'localisation/Localisation';
 
 import {styles} from '../styles/descriptionSets';
-import {localisation} from '../localisation/localisation';
 
 const {width}: ScaledSize = Dimensions.get('window');
 

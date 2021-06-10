@@ -20,27 +20,7 @@ export const styles = StyleSheet.create({
     marginLeft: 60,
     flex: 1,
   },
-  textBlockWithIcon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    paddingLeft: 4,
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  icon: {
-    width: 18,
-    height: 18,
-  },
-  answer: {
-    paddingLeft: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  block: {
-    paddingBottom: 10,
-  },
+
   description: {
     paddingVertical: 20,
     paddingHorizontal: 60,

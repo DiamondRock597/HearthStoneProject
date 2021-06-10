@@ -12,12 +12,12 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 import HTMLView from 'react-native-htmlview';
 
-import {RootScreens, RootStackParamList} from '../navigation/screens';
-import {Card as CardModel} from '../models/card';
+import {RootScreens, RootStackParamList} from '@utils/navigation/screens';
+import {Card as CardModel} from '@models/card';
 import {
   DescriptionValue,
   DescriptionValues,
-} from '../components/DescriptionValue';
+} from 'components/description_value/DescriptionValue';
 
 import {styles} from '../styles/description';
 
@@ -34,7 +34,7 @@ export const Description: React.FC<Props> = ({route}: Props) => {
   const discr: string = `<p> ${card.text}</p>`;
 
   return (
-    <ScrollView style={styles.background}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.background}>
       <View style={styles.container}>
         <View style={styles.imageBlock}>
           <View style={styles.image}>
